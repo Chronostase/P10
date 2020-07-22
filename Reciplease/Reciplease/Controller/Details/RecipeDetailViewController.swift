@@ -10,13 +10,25 @@ import Foundation
 import UIKit
 
 class RecipeDetailViewController: UIViewController {
-    var recipeList: RecipeList?
+    @IBOutlet weak var recipeImage: UIImageView!
+    @IBOutlet weak var ingredientsTextView: UITextView!
+    @IBOutlet weak var getDirectionButton: UIButton!
     
-    private func pushRecipeDetail() {
-        let storyBoard = UIStoryboard(name: Constants.Storyboard.recipeDetailName, bundle: nil)
-        guard let recipeDetailController = storyBoard.instantiateInitialViewController() as? RecipeDetailViewController else {
+    var recipe: RecipeDetails?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+    }
+    
+    
+    private func setupUI () {
+        
+        guard let imageData = recipe?.imageData else {
             return
         }
-        push(recipeDetailController)
+        let image = UIImage(data: imageData)
+        recipeImage.image = image
+        ingredientsTextView.text = "\(recipe?.ingredientLines ?? [""])".formattedToReading
     }
 }

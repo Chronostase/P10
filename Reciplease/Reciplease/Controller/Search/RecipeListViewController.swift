@@ -33,5 +33,14 @@ class RecipeListViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
     }
+    
+    func pushRecipeDetail(withRecipe recipe: RecipeDetails) {
+        let storyBoard = UIStoryboard(name: Constants.Storyboard.recipeDetailName, bundle: nil)
+        guard let recipeDetailController = storyBoard.instantiateInitialViewController() as? RecipeDetailViewController else {
+            return
+        }
+        recipeDetailController.recipe = recipe
+        push(recipeDetailController)
+    }
 
 }

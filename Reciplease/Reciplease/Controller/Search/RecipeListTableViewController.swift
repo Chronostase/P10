@@ -29,9 +29,12 @@ extension RecipeListViewController: UITableViewDataSource {
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let recipe = recipeList?.hits[indexPath.row].recipe else {
+            return
+        }
+        pushRecipeDetail(withRecipe: recipe)
+    }
 }
 
 extension RecipeListViewController: UITableViewDelegate {
