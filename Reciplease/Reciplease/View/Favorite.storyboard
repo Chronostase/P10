@@ -7,16 +7,17 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Favorite-->
+        <!--Favorite View Controller-->
         <scene sceneID="gm7-bz-Ucp">
             <objects>
-                <viewController id="QOX-sC-kRo" sceneMemberID="viewController">
+                <viewController id="QOX-sC-kRo" customClass="FavoriteViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aMB-Ae-wOI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXB-Sv-qVM">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <color key="barTintColor" red="0.31642365459999999" green="0.31013762950000001" blue="0.31002330779999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <navigationItem title="Title" id="mOG-0F-iWi"/>
                                 </items>
@@ -26,7 +27,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.96794027090000001" green="0.96491521599999996" blue="0.96471995119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.36407065389999999" green="0.3609622717" blue="0.36086669560000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="FAI-og-rjO" firstAttribute="bottom" secondItem="vWV-aI-KE3" secondAttribute="bottom" id="H1e-Cn-X5D"/>
                             <constraint firstItem="UXB-Sv-qVM" firstAttribute="centerX" secondItem="aMB-Ae-wOI" secondAttribute="centerX" id="SfC-9n-hue"/>
@@ -39,7 +40,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FAI-og-rjO"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favorite" id="8ky-bk-Mkl"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="Fkp-8f-GJv"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HQw-Dn-0p3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

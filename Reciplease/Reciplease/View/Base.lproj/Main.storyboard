@@ -15,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.20784313725490194" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="Pxu-gd-ZFf" kind="relationship" relationship="viewControllers" id="EzR-3k-cpa"/>
@@ -29,7 +29,7 @@
         <scene sceneID="rEq-2L-DBO">
             <objects>
                 <viewControllerPlaceholder storyboardName="Search" id="Pxu-gd-ZFf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="fzJ-D0-Kb2"/>
+                    <tabBarItem key="tabBarItem" id="fzJ-D0-Kb2"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kBO-K7-dZa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -39,7 +39,7 @@
         <scene sceneID="7OS-F1-O56">
             <objects>
                 <viewControllerPlaceholder storyboardName="Favorite" id="a4H-Pf-TL2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Dyw-I2-76S"/>
+                    <tabBarItem key="tabBarItem" id="Dyw-I2-76S"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TZU-6j-Whp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
