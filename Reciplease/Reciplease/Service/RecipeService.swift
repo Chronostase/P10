@@ -17,7 +17,6 @@ class RecipeService {
             
             AF.request(createURLRequest(userEntry) , method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response {
                 (responseData) in
-                    print("Work")
                 guard responseData.error == nil else {
                     callback(.failure(.error))
                     return
@@ -50,7 +49,6 @@ class RecipeService {
     func getImage(url: String, callback: @escaping (Result <Data?, ServiceError>) -> Void) {
         AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response {
             (responseData) in
-                print("Work")
 
             guard responseData.error == nil else {
                 callback(.failure(.error))

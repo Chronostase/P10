@@ -23,6 +23,7 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func searchButton(_ sender: UIButton) {
+        ingredientsTextField.resignFirstResponder()
         getRecipes()
     }
     @IBAction func ClearButton(_ sender: UIButton) {
@@ -55,6 +56,7 @@ class SearchViewController: UIViewController {
         
         imageUrls.enumerated().forEach { url in
             RecipeService().getImage(url: url.element) { [weak self] result in
+                
                 switch result {
                 case .success(let data):
                     guard let data = data else {
@@ -72,19 +74,29 @@ class SearchViewController: UIViewController {
                     //Vérifier quand le dernier fail
                     imageUrlsCount -= 1
                     
-                    guard let placeholderImage = UIImage(named: "placeholder")?.pngData() else {
-                        return
-                    }
+                    self?.setImagePlaceHolder(at: url.offset)
                     
-                    self?.recipeList?.hits[url.offset].recipe.imageData = placeholderImage
+                    if url.offset == imageUrlsCount {
+                        self?.pushRecipeListTableView()
+                    }
                 }
             }
         }
     }
     
+    /** Set textField and textView Delegate and add button to keyboard toolbar*/
     private func setup() {
         setTextFielAndTextViewdDelegate()
         setupAddButton()
+    }
+    
+    /** Set image PlaceHolder*/
+    private func setImagePlaceHolder(at index: Int) {
+        guard let placeholderImage = UIImage(named: "placeholder")?.pngData() else {
+            return
+        }
+        
+        self.recipeList?.hits[index].recipe.imageData = placeholderImage
     }
     
     /** Set user entry to textView */
@@ -101,12 +113,12 @@ class SearchViewController: UIViewController {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
         toolBar.sizeToFit()
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(tapDoneButton))
+        let doneButton = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(tapAddButton))
         toolBar.setItems([flexibleSpace, doneButton], animated: false)
         ingredientsTextField.inputAccessoryView = toolBar
     }
     
-    @objc func tapDoneButton() {
+    @objc func tapAddButton() {
         setTextFieldValueToTextView()
         ingredientsTextField.text = nil 
     }

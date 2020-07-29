@@ -20,6 +20,9 @@
 		E98C45B924BF50F50068520C /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98C45B824BF50F50068520C /* CustomCell.xib */; };
 		E98C45BB24BF5D970068520C /* SearchViewController+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98C45BA24BF5D970068520C /* SearchViewController+UITextField.swift */; };
 		E98C45BD24BF5F610068520C /* SearchViewController+UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98C45BC24BF5F610068520C /* SearchViewController+UITextView.swift */; };
+		E9BCFB7024D18849003F9FB0 /* CodingUserInfoKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BCFB6F24D18849003F9FB0 /* CodingUserInfoKey.swift */; };
+		E9BF939C24CF2104008B680D /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BF939B24CF2104008B680D /* FavoriteTableViewController.swift */; };
+		E9BF939E24CF334E008B680D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BF939D24CF334E008B680D /* CoreDataManager.swift */; };
 		E9CA1FEA24C1A663009C6C51 /* RecipeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA1FE924C1A663009C6C51 /* RecipeList.swift */; };
 		E9CA1FED24C1A87F009C6C51 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA1FEC24C1A87F009C6C51 /* CustomTableViewCell.swift */; };
 		E9CA1FEF24C1AB7F009C6C51 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CA1FEE24C1AB7F009C6C51 /* ServiceError.swift */; };
@@ -37,6 +40,7 @@
 		E9DB2D8C24BDF5CA000E7BD4 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9DB2D8B24BDF5CA000E7BD4 /* ApiKeys.plist */; };
 		E9DB2D8E24BDF828000E7BD4 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DB2D8D24BDF828000E7BD4 /* ApiKey.swift */; };
 		E9DB2D9024BDF854000E7BD4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9DB2D8F24BDF854000E7BD4 /* Default-568h@2x.png */; };
+		E9E8FC9424D2147900B09854 /* Recipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8FC9324D2147900B09854 /* Recipes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +71,9 @@
 		E98C45B824BF50F50068520C /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		E98C45BA24BF5D970068520C /* SearchViewController+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+UITextField.swift"; sourceTree = "<group>"; };
 		E98C45BC24BF5F610068520C /* SearchViewController+UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+UITextView.swift"; sourceTree = "<group>"; };
+		E9BCFB6F24D18849003F9FB0 /* CodingUserInfoKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingUserInfoKey.swift; sourceTree = "<group>"; };
+		E9BF939B24CF2104008B680D /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
+		E9BF939D24CF334E008B680D /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		E9CA1FE924C1A663009C6C51 /* RecipeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeList.swift; sourceTree = "<group>"; };
 		E9CA1FEC24C1A87F009C6C51 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		E9CA1FEE24C1AB7F009C6C51 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
@@ -88,6 +95,7 @@
 		E9DB2D8B24BDF5CA000E7BD4 /* ApiKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		E9DB2D8D24BDF828000E7BD4 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		E9DB2D8F24BDF854000E7BD4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E9E8FC9324D2147900B09854 /* Recipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				E98C45B224BF0D570068520C /* FavoriteViewController.swift */,
+				E9BF939B24CF2104008B680D /* FavoriteTableViewController.swift */,
 			);
 			path = Favorite;
 			sourceTree = "<group>";
@@ -155,8 +164,19 @@
 			children = (
 				E98C45B024BF0A300068520C /* UIViewController+Push+DisplayAlert.swift */,
 				E9CA1FFB24C720D2009C6C51 /* StringExtension.swift */,
+				E9BCFB6F24D18849003F9FB0 /* CodingUserInfoKey.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E99A578024CF08F9006649AC /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				E9DB2D6824BDF409000E7BD4 /* Reciplease.xcdatamodeld */,
+				E9BF939D24CF334E008B680D /* CoreDataManager.swift */,
+				E9E8FC9324D2147900B09854 /* Recipes.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		E9CA1FEB24C1A837009C6C51 /* Cell */ = {
@@ -215,7 +235,7 @@
 				E98C45AF24BF09F20068520C /* Extensions */,
 				E9DB2D8624BDF510000E7BD4 /* Utilities */,
 				E9DB2D8724BDF513000E7BD4 /* Supporting Files */,
-				E9DB2D6824BDF409000E7BD4 /* Reciplease.xcdatamodeld */,
+				E99A578024CF08F9006649AC /* CoreData */,
 			);
 			path = Reciplease;
 			sourceTree = "<group>";
@@ -457,6 +477,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9BCFB7024D18849003F9FB0 /* CodingUserInfoKey.swift in Sources */,
+				E9BF939C24CF2104008B680D /* FavoriteTableViewController.swift in Sources */,
+				E9BF939E24CF334E008B680D /* CoreDataManager.swift in Sources */,
 				E9CA1FEF24C1AB7F009C6C51 /* ServiceError.swift in Sources */,
 				E98C45BD24BF5F610068520C /* SearchViewController+UITextView.swift in Sources */,
 				E98C45BB24BF5D970068520C /* SearchViewController+UITextField.swift in Sources */,
@@ -470,6 +493,7 @@
 				E9CA1FFF24C89469009C6C51 /* RecipeDetailViewController.swift in Sources */,
 				E9CA1FF624C1AD26009C6C51 /* RecipeService.swift in Sources */,
 				E9CA1FF824C5F6E1009C6C51 /* RecipeListTableViewController.swift in Sources */,
+				E9E8FC9424D2147900B09854 /* Recipes.swift in Sources */,
 				E9CA1FF124C1ABB0009C6C51 /* Constants.swift in Sources */,
 				E98C45B324BF0D570068520C /* FavoriteViewController.swift in Sources */,
 				E9DB2D6024BDF409000E7BD4 /* AppDelegate.swift in Sources */,

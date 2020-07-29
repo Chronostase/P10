@@ -39,11 +39,5 @@ class CustomTableViewCell: UITableViewCell {
         self.durationLabel.text = "\(durationLabel)"
         
     }
-    
-    func testConfigure(recipeName: String, recipeYield: Double, recipeDetails: [String]) {
-        self.recipeName.text = recipeName
-        self.notationLabel.text = "\(recipeYield)"
-        self.recipeDetails.text = "\(recipeDetails)"
-    }
 }
 
