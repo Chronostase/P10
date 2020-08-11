@@ -25,4 +25,8 @@ extension UIViewController {
         alertController.addAction(OKAction)
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    func setNavigationBarTitle(title name: String, navItem: UINavigationItem) {
+        navItem.title = name
+    }
 }

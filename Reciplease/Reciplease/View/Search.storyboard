@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MkV-yx-oQ7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EAp-iw-JXU">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -8,40 +8,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="fNp-bf-T5b">
-            <objects>
-                <navigationController id="MkV-yx-oQ7" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ux7-4P-K77">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.20784313725490194" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="3Ls-o7-XV7" kind="relationship" relationship="rootViewController" id="0Gs-dE-5QB"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3w6-Un-bHR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-583" y="-55"/>
-        </scene>
         <!--Reciplease-->
         <scene sceneID="W1Z-Mc-CQu">
             <objects>
-                <viewController id="3Ls-o7-XV7" customClass="SearchViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Reciplease" id="3Ls-o7-XV7" customClass="SearchViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EAU-BL-eDT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgp-IY-hhY">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Q7-EP-tZG">
-                                        <rect key="frame" x="0.0" y="30" width="414" height="109"/>
+                                        <rect key="frame" x="0.0" y="30" width="414" height="116"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lemon, Cheese, Sausages..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i2O-zv-6AE">
-                                                <rect key="frame" x="15" y="55" width="384" height="34"/>
+                                                <rect key="frame" x="15" y="62" width="384" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="i2O-zv-6AE" secondAttribute="height" multiplier="192:17" id="4dX-BL-WhC"/>
                                                 </constraints>
@@ -49,7 +31,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" returnKeyType="done"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's in your fridge ?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZH-8d-M5V">
-                                                <rect key="frame" x="0.0" y="20" width="414" height="20"/>
+                                                <rect key="frame" x="0.0" y="27" width="414" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -65,8 +47,8 @@
                                             <constraint firstAttribute="trailing" secondItem="i2O-zv-6AE" secondAttribute="trailing" constant="15" id="vbY-h6-FKw"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2aq-Js-v6e">
-                                        <rect key="frame" x="30" y="647" width="354" height="58"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2aq-Js-v6e" customClass="RoundedButton" customModule="Reciplease" customModuleProvider="target">
+                                        <rect key="frame" x="30" y="692" width="354" height="62"/>
                                         <color key="backgroundColor" red="0.25098039215686274" green="0.56470588235294117" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Search for recipes">
@@ -77,20 +59,20 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your ingredients : " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6p-SA-rpA">
-                                        <rect key="frame" x="30" y="154" width="364" height="31.5"/>
+                                        <rect key="frame" x="30" y="161" width="364" height="31.5"/>
                                         <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="25"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nLC-sC-0TF">
-                                        <rect key="frame" x="20" y="205.5" width="374" height="421.5"/>
+                                        <rect key="frame" x="20" y="212.5" width="374" height="459.5"/>
                                         <color key="backgroundColor" red="0.20784313725490194" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lz1-Cg-iUx">
-                                        <rect key="frame" x="348" y="146.5" width="46" height="46"/>
+                                        <rect key="frame" x="348" y="154" width="46" height="46"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="46" id="GjF-9m-ZBQ"/>
                                             <constraint firstAttribute="width" secondItem="Lz1-Cg-iUx" secondAttribute="height" multiplier="1:1" id="W1H-Sp-Qn5"/>
@@ -137,16 +119,37 @@
                     <tabBarItem key="tabBarItem" systemItem="search" id="BMu-C4-nWl">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Reciplease" id="cQN-nA-FIi"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationItem key="navigationItem" title="Title" id="W3g-lE-Tzo"/>
                     <connections>
                         <outlet property="ingredientsListTextView" destination="nLC-sC-0TF" id="z20-UA-yQp"/>
                         <outlet property="ingredientsTextField" destination="i2O-zv-6AE" id="TpX-do-2No"/>
+                        <outlet property="navItem" destination="W3g-lE-Tzo" id="fLB-Am-JrA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1nG-ua-efU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="303" y="-56"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DXj-vc-hiz">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="anf-MQ-GwZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController id="EAp-iw-JXU" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aL9-gM-mjI">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.20784313730000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="26"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="3Ls-o7-XV7" kind="relationship" relationship="rootViewController" id="yfv-jl-Uzf"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-687" y="-56"/>
         </scene>
     </scenes>
 </document>

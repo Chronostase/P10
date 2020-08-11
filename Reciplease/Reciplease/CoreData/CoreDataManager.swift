@@ -40,7 +40,7 @@ class CoreDataManager {
         let request: NSFetchRequest<Recipes> = Recipes.fetchRequest()
          
         do {
-            let recipes = try CoreDataManager().persistentContainer.viewContext.fetch(request)
+            let recipes = try persistentContainer.viewContext.fetch(request)
             return recipes
         } catch {
             print("Can't get data from database")

@@ -1,0 +1,50 @@
+//
+//  Loader.swift
+//  Reciplease
+//
+//  Created by Thomas on 11/08/2020.
+//  Copyright © 2020 Thomas. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+protocol UILoader {}
+
+extension UILoader where Self: UIViewController {
+    
+    ///Create and animating loader
+    fileprivate func showLoader(withStryle style: UIActivityIndicatorView.Style) {
+        DispatchQueue.main.async {
+            let loader = UIActivityIndicatorView(style: style)
+            loader.center = self.view.center
+            self.view.isUserInteractionEnabled = false
+            loader.startAnimating()
+            self.view.addSubview(loader)
+        }
+    }
+    
+    ///Hide and stop animating loader
+    fileprivate func hideLoader() {
+        DispatchQueue.main.async {
+            self.view.subviews.forEach {
+                guard let activityIndicator = $0 as? UIActivityIndicatorView else {
+                    return
+                }
+                self.view.isUserInteractionEnabled = true
+                activityIndicator.stopAnimating()
+                activityIndicator.removeFromSuperview()
+            }
+        }
+    }
+}
+
+extension UIViewController: UILoader {
+    func showIndicator(withStryle style: UIActivityIndicatorView.Style = .whiteLarge) {
+        showLoader(withStryle: style)
+    }
+    
+    func hideIndicator() {
+        hideLoader()
+    }
+}

@@ -10,13 +10,19 @@ import Foundation
 import UIKit
 
 class FavoriteViewController: UIViewController {
+    @IBOutlet var navItem: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     var coreDataManager = CoreDataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+    }
+    
+    private func setup() {
         setupCustomCell()
         setTableViewDelegate()
+        setNavigationBarTitle(title: "Favorites", navItem: navItem)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,12 +41,12 @@ class FavoriteViewController: UIViewController {
         tableView.delegate = self
     }
     
-    func pushRecipeDetail(withRecipe recipe: Recipes) {
+    func pushRecipeDetail(withRecipe recipe: RecipeDetails) {
         let storyBoard = UIStoryboard(name: Constants.Storyboard.recipeDetailName, bundle: nil)
         guard let recipeDetailController = storyBoard.instantiateInitialViewController() as? RecipeDetailViewController else {
             return
         }
-        recipeDetailController.recipes = coreDataManager.read()
+        recipeDetailController.recipe = recipe
         push(recipeDetailController)
     }
 }

@@ -19,6 +19,9 @@ class RecipeListViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+    }
+    
     private func setupTableView() {
         setTableViewDataSourceAndDelegate()
         setupCustomCell()
@@ -34,12 +37,12 @@ class RecipeListViewController: UIViewController {
         tableView.delegate = self
     }
     
-    func pushRecipeDetail(withRecipe recipe: [RecipeDetails]) {
+    func pushRecipeDetail(withRecipe recipe: RecipeDetails) {
         let storyBoard = UIStoryboard(name: Constants.Storyboard.recipeDetailName, bundle: nil)
         guard let recipeDetailController = storyBoard.instantiateInitialViewController() as? RecipeDetailViewController else {
             return
         }
-        recipeDetailController.recipe = recipe[0]
+        recipeDetailController.recipe = recipe
         push(recipeDetailController)
     }
 

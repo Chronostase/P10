@@ -31,12 +31,14 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     //Configure cell with all properties
-    func configureCell(recipeImage: Data, recipeName: String, recipeDetails: String, notationLabel: Double, durationLabel: Double) {
+    func configureCell(recipeImage: Data, recipeName: String, recipeDetails: String, notationLabel: Double, durationLabel: Double, notationImage: UIImage, durationImage: UIImage) {
         self.recipeImage.image = UIImage(data: recipeImage)
         self.recipeName.text = recipeName
         self.recipeDetails.text = recipeDetails
         self.notationLabel.text = "\(notationLabel)"
         self.durationLabel.text = "\(durationLabel)"
+        self.notationImage.image = notationImage
+        self.durationImage.image = durationImage
         
     }
 }

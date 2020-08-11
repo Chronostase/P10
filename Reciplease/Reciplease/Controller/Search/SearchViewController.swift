@@ -11,6 +11,8 @@ class SearchViewController: UIViewController {
     
     //MARK: - Properties
     
+    
+    @IBOutlet var navItem: UINavigationItem!
     @IBOutlet weak var ingredientsTextField: UITextField!
     @IBOutlet weak var ingredientsListTextView: UITextView!
     var recipeList: RecipeList?
@@ -32,14 +34,19 @@ class SearchViewController: UIViewController {
     
     private func getRecipes() {
         let text = ingredientsListTextView.text.formattedToRequest
+        self.showIndicator()
         RecipeService().getData(userEntry: text) { [weak self] result in
+            self?.hideIndicator()
             switch result {
-            case .success(let recipe):
-                guard let recipe = recipe else {
+            case .success(let recipeList):
+                guard let recipeList = recipeList else {
+                    print("there is no recipeList")
                     return
                 }
-                self?.recipeList = recipe
+                self?.recipeList = recipeList
                 self?.getImages()
+                
+                print(recipeList.hits.count)
                 
             case .failure(let error):
                 print(error.localizedDescription)
@@ -48,15 +55,13 @@ class SearchViewController: UIViewController {
     }
     
     private func getImages() {
-        guard let imageUrls = recipeList?.hits.map({$0.recipe.image}) else {
+        guard let imageUrls = recipeList?.hits.compactMap({$0.recipe.image}) else {
             return
         }
         
         var imageUrlsCount = imageUrls.count - 1
-        
         imageUrls.enumerated().forEach { url in
             RecipeService().getImage(url: url.element) { [weak self] result in
-                
                 switch result {
                 case .success(let data):
                     guard let data = data else {
@@ -64,20 +69,34 @@ class SearchViewController: UIViewController {
                     }
                     
                     self?.recipeList?.hits[url.offset].recipe.imageData = data
+                    print("Image data received, \(String(describing: self?.recipeList?.hits[url.offset].recipe.imageData))")
                     
-                    if url.offset == imageUrlsCount {
+                    if (self?.recipeList?.hits.filter({ $0.recipe.imageData == nil }).isEmpty) == true {
                         // All calls done
+                        print("\n")
+                        self?.recipeList?.hits.forEach {
+                            print($0.recipe.imageData as Any)
+                        }
                         self?.pushRecipeListTableView()
+                        return
                     }
                 case .failure(let error):
+                    print("Image data fetch failed")
                     print(error.localizedDescription)
                     //Vérifier quand le dernier fail
                     imageUrlsCount -= 1
                     
                     self?.setImagePlaceHolder(at: url.offset)
-                    
-                    if url.offset == imageUrlsCount {
+                    //Filtre image data == nil si ça fonctionne rentre dans la condi, gérer cas particulier
+                    if (self?.recipeList?.hits.filter({ $0.recipe.imageData == nil }).isEmpty) == true {
+                        print("\n")
+                        self?.recipeList?.hits.forEach {
+                            print($0.recipe.imageData as Any)
+                        }
                         self?.pushRecipeListTableView()
+                        return
+                    } else {
+                        print("ENTER IN ERROR CASE ")
                     }
                 }
             }
@@ -87,6 +106,7 @@ class SearchViewController: UIViewController {
     /** Set textField and textView Delegate and add button to keyboard toolbar*/
     private func setup() {
         setTextFielAndTextViewdDelegate()
+        setNavigationBarTitle(title: "Reciplease", navItem: navItem)
         setupAddButton()
     }
     
@@ -136,6 +156,7 @@ class SearchViewController: UIViewController {
             return
         }
         recipeListViewController.recipeList = recipeList
+        recipeListViewController.navigationController?.navigationBar.topItem?.title = "Reciplease"
         push(recipeListViewController)
     }
     

@@ -11,22 +11,35 @@ import UIKit
 import SafariServices
 
 class RecipeDetailViewController: UIViewController {
+    
+    @IBOutlet var navItem: UINavigationItem!
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var ingredientsTextView: UITextView!
     @IBOutlet weak var recipeName: UILabel!
     
     let coreDataManager = CoreDataManager()
-    var recipe: RecipeDetails?
-    var recipes: [Recipes]?
+    var recipe: RecipeDetails? {
+        didSet {
+            DispatchQueue.main.async {
+                self.setupUIForRecipe()
+            }
+        }
+    }
     
     @IBAction func getDirectionButton(_ sender: UIButton) {
         showWebView()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        setupNavigationBarButton()
+        setup()
     }
+    
+    private func setup() {
+        setupNavigationBarButton()
+        setNavigationBarTitle(title: "Reciplease", navItem: navItem)
+    }
+    
     /** Show recipe webPage */
     private func showWebView() {
         guard let recipeUrl = recipe?.url, let url = URL(string: recipeUrl) else {
@@ -36,15 +49,22 @@ class RecipeDetailViewController: UIViewController {
         present(safariViewController, animated: true)
     }
     /** Set image, recipeName and ingredientDetail */
-    private func setupUI () {
-        guard let imageData = recipe?.imageData else {
+    private func setupUIForRecipe () {
+        guard let imageData = recipe?.imageData, let recipe = recipe else {
             return
         }
         let image = UIImage(data: imageData)
-        recipeName.text = recipe?.label
+        recipeName.text = recipe.label
         recipeImage.image = image
-        ingredientsTextView.text = "\(recipe?.ingredientLines ?? [""])".formattedToReading
+        var recipeIngredients = ""
+        for element in recipe.ingredientLines {
+            //Problème duplique tiret
+            recipeIngredients.append(("- " + element + "*").formattedArrayToReading)
+            print(recipeIngredients)
+        }
+        ingredientsTextView.text = recipeIngredients
     }
+    
     
     /** Add Favorite button to navigationBar*/
     private func setupNavigationBarButton() {
@@ -74,19 +94,18 @@ class RecipeDetailViewController: UIViewController {
         }
         let favoriteRecipe = Recipes(context: coreDataManager.persistentContainer.viewContext)
         favoriteRecipe.name = recipe.label
-        favoriteRecipe.ingredientLines = "\(recipe.ingredientLines)".formattedToReading
+        var recipeIngredients = ""
+        for element in recipe.ingredientLines {
+            recipeIngredients.append(("- " + element + "*").formattedArrayToReading)
+            print(recipeIngredients)
+        }
+        ingredientsTextView.text = recipeIngredients
+        favoriteRecipe.ingredientLines = recipeIngredients
         favoriteRecipe.image = recipe.image
         favoriteRecipe.totalTime = recipe.totalTime
         favoriteRecipe.yield = recipe.yield
         favoriteRecipe.imageData = recipe.imageData
         favoriteRecipe.url = recipe.url
-//        let favoriteRecipe = RecipeDetails(context: coreDataManager.persistentContainer.viewContext)
-//        favoriteRecipe.name = recipe.name
-//        favoriteRecipe.ingredientLines = recipe.ingredientLines
-//        favoriteRecipe.imageData = recipe.imageData
-//        favoriteRecipe.totalTime = recipe.totalTime
-//        
-//        favoriteRecipe.yield = recipe.yield
         do {
             try coreDataManager.persistentContainer.viewContext.save()
             print("SuccessFully save")

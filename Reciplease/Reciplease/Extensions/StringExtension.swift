@@ -17,10 +17,29 @@ extension String {
         return formattedText
     }
     
-    var formattedToReading: String {
+    var formattedArrayToReading: String {
         var formattedText = self
-        let characterModification = ["[": "","]": "","\"": ""]
+        let characterModification = ["*": "\n"]
         characterModification.forEach { formattedText = formattedText.replacingOccurrences(of: $0.key, with: $0.value) }
+        
         return formattedText
+    }
+    
+    var isInt: Bool {
+        return Int(self) != nil
+    }
+    
+    var isDouble: Bool {
+        return Double(self) != nil
+    }
+    
+    //Check if a string is convertible to Int or Double
+    
+    func isConvertiBleToIntOrDouble() -> Bool {
+        if self.isDouble || self.isInt {
+            return true
+        } else {
+            return false
         }
+    }
 }

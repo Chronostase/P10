@@ -14,7 +14,6 @@ class RecipeService {
     var numberExpected: Int?
     
     func getData(userEntry: String, callback: @escaping (Result <RecipeList?, ServiceError>) -> Void) {
-            
             AF.request(createURLRequest(userEntry) , method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response {
                 (responseData) in
                 guard responseData.error == nil else {
@@ -37,6 +36,7 @@ class RecipeService {
                 do {
 
                     let object = try JSONDecoder().decode(RecipeList.self, from: data)
+                    print(object.hits.first?.recipe.ingredientLines)
                     callback(.success(object))
                 } catch {
                     print(error)
@@ -45,7 +45,6 @@ class RecipeService {
                 
             }
         }
-    
     func getImage(url: String, callback: @escaping (Result <Data?, ServiceError>) -> Void) {
         AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil).response {
             (responseData) in

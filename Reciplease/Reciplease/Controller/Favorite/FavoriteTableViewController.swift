@@ -26,22 +26,23 @@ extension FavoriteViewController: UITableViewDataSource {
         guard let recipes = coreDataManager.read() else {
             return UITableViewCell()
         }
-        let recipe = recipes[indexPath.row]
-        guard let name = recipe.name, let image = recipe.imageData else {
-            print("failed 2")
+        guard let recipe = recipes[indexPath.row].convertedToRecipeDetails, let image = recipe.imageData, let notationImage = UIImage(named: "like"), let durationImage = UIImage(named: "watch") else {
             return UITableViewCell()
         }
-        let ingredientList = "\(recipe.ingredientLines ?? "ops")"
-        cell.configureCell(recipeImage: image, recipeName: name, recipeDetails: ingredientList, notationLabel: recipe.yield, durationLabel: recipe.totalTime)
+        let ingredientList = "\(recipe.ingredientLines)"
+        cell.configureCell(recipeImage: image, recipeName: recipe.label, recipeDetails: ingredientList, notationLabel: recipe.yield, durationLabel: recipe.totalTime, notationImage: notationImage, durationImage: durationImage)
         print("SuccessFully passed data")
         return cell 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let recipes = coreDataManager.read() else {
+        print("Enter in did Select")
+        self.showIndicator()
+        guard let recipes = coreDataManager.read(), let recipe = recipes[indexPath.row].convertedToRecipeDetails else {
             return
         }
-        let recipe = recipes[indexPath.row]
+        self.hideIndicator()
+        
         pushRecipeDetail(withRecipe: recipe)
     }
 }
