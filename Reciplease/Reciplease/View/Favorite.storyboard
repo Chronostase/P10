@@ -31,7 +31,9 @@
                         <viewLayoutGuide key="safeArea" id="FAI-og-rjO"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="Fkp-8f-GJv"/>
-                    <navigationItem key="navigationItem" id="f3o-n4-Cif"/>
+                    <navigationItem key="navigationItem" id="f3o-n4-Cif">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Wn8-Iv-GLh"/>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="navItem" destination="f3o-n4-Cif" id="RNL-Kr-cNa"/>

@@ -38,6 +38,7 @@ class RecipeDetailViewController: UIViewController {
     private func setup() {
         setupNavigationBarButton()
         setNavigationBarTitle(title: "Reciplease", navItem: navItem)
+//        setFavoriteButtonColor()
     }
     
     /** Show recipe webPage */
@@ -59,10 +60,15 @@ class RecipeDetailViewController: UIViewController {
         var recipeIngredients = ""
         for element in recipe.ingredientLines {
             //Problème duplique tiret
-            recipeIngredients.append(("- " + element + "*").formattedArrayToReading)
+            if element.first == "-" {
+                recipeIngredients.append((element + "*").formattedArrayToReading)
+            } else {
+                recipeIngredients.append(("- " + element + "*").formattedArrayToReading)
+            }
             print(recipeIngredients)
         }
         ingredientsTextView.text = recipeIngredients
+        setFavoriteButtonColor()
     }
     
     
@@ -83,8 +89,51 @@ class RecipeDetailViewController: UIViewController {
     }
     
     @objc private func addToFavorite(button: UIButton) {
-        button.tintColor = .systemYellow
-        saveObject()
+        if button.tintColor == UIColor.white {
+            button.tintColor = .systemYellow
+            saveObject()
+        } else {
+            removeRecipe()
+        }
+    }
+    
+    private func removeRecipe() {
+        guard let favoriteRecipes = coreDataManager.read() else {
+            return
+        }
+        if favoriteRecipes.count > 0 {
+            for recipe in favoriteRecipes {
+                if recipe.name == recipeName.text {
+                    coreDataManager.remove(recipe: recipe)
+                }
+            }
+        }
+        setFavoriteButtonColor()
+    }
+    
+    private func setFavoriteButtonColor() {
+        if isAlreadyInFavorite() {
+            navigationItem.rightBarButtonItem?.customView?.tintColor = .systemYellow
+        } else {
+            navigationItem.rightBarButtonItem?.customView?.tintColor = .white
+        }
+    }
+    
+    private func isAlreadyInFavorite() -> Bool {
+        var indicator = false
+        guard let favoriteRecipes = coreDataManager.read() else {
+            return false
+        }
+//        favoriteRecipes.first { $0.name == recipeName.text }
+        if favoriteRecipes.count > 0 {
+            for recipe in favoriteRecipes {
+                // Try to compare complete recipe
+                if recipe.name == recipeName.text {
+                    indicator = true
+                }
+            }
+        }
+        return indicator
     }
     
     private func saveObject() {
@@ -94,13 +143,7 @@ class RecipeDetailViewController: UIViewController {
         }
         let favoriteRecipe = Recipes(context: coreDataManager.persistentContainer.viewContext)
         favoriteRecipe.name = recipe.label
-        var recipeIngredients = ""
-        for element in recipe.ingredientLines {
-            recipeIngredients.append(("- " + element + "*").formattedArrayToReading)
-            print(recipeIngredients)
-        }
-        ingredientsTextView.text = recipeIngredients
-        favoriteRecipe.ingredientLines = recipeIngredients
+        favoriteRecipe.ingredientLines = self.ingredientsTextView.text
         favoriteRecipe.image = recipe.image
         favoriteRecipe.totalTime = recipe.totalTime
         favoriteRecipe.yield = recipe.yield

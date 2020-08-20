@@ -44,6 +44,8 @@
 		E9E8FC9A24E2F09200B09854 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8FC9924E2F09200B09854 /* RoundedButton.swift */; };
 		E9E8FC9C24E2F66100B09854 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8FC9B24E2F66100B09854 /* UIColor.swift */; };
 		E9E8FC9E24E2FF0200B09854 /* BorderedUiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8FC9D24E2FF0200B09854 /* BorderedUiView.swift */; };
+		E9E8FCA024E4354A00B09854 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8FC9F24E4354A00B09854 /* IntExtension.swift */; };
+		E9E8FCA224E43C9000B09854 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8FCA124E43C9000B09854 /* DoubleExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +104,8 @@
 		E9E8FC9924E2F09200B09854 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		E9E8FC9B24E2F66100B09854 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		E9E8FC9D24E2FF0200B09854 /* BorderedUiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedUiView.swift; sourceTree = "<group>"; };
+		E9E8FC9F24E4354A00B09854 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		E9E8FCA124E43C9000B09854 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +175,8 @@
 				E98C45B024BF0A300068520C /* UIViewController+Push+DisplayAlert.swift */,
 				E9CA1FFB24C720D2009C6C51 /* StringExtension.swift */,
 				E9E8FC9B24E2F66100B09854 /* UIColor.swift */,
+				E9E8FC9F24E4354A00B09854 /* IntExtension.swift */,
+				E9E8FCA124E43C9000B09854 /* DoubleExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -497,10 +503,12 @@
 				E9BF939C24CF2104008B680D /* FavoriteTableViewController.swift in Sources */,
 				E9BF939E24CF334E008B680D /* CoreDataManager.swift in Sources */,
 				E9E8FC9E24E2FF0200B09854 /* BorderedUiView.swift in Sources */,
+				E9E8FCA024E4354A00B09854 /* IntExtension.swift in Sources */,
 				E9CA1FEF24C1AB7F009C6C51 /* ServiceError.swift in Sources */,
 				E98C45BD24BF5F610068520C /* SearchViewController+UITextView.swift in Sources */,
 				E9E8FC9A24E2F09200B09854 /* RoundedButton.swift in Sources */,
 				E98C45BB24BF5D970068520C /* SearchViewController+UITextField.swift in Sources */,
+				E9E8FCA224E43C9000B09854 /* DoubleExtension.swift in Sources */,
 				E9CA1FED24C1A87F009C6C51 /* CustomTableViewCell.swift in Sources */,
 				E9DB2D6A24BDF409000E7BD4 /* Reciplease.xcdatamodeld in Sources */,
 				E9E8FC9824E2E8EE00B09854 /* Loader.swift in Sources */,

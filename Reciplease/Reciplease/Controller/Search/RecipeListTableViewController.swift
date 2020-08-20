@@ -23,6 +23,7 @@ extension RecipeListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         let recipeIngredients = recipe.ingredientLines[0]
+        print(recipeIngredients)
         cell.configureCell(recipeImage: imageData, recipeName: recipe.label, recipeDetails: recipeIngredients, notationLabel: recipe.yield, durationLabel: recipe.totalTime, notationImage: notationImage, durationImage: durationImage)
         
         return cell

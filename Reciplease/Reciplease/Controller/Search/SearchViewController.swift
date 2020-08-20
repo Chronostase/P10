@@ -32,6 +32,15 @@ class SearchViewController: UIViewController {
         ingredientsListTextView.text = ""
     }
     
+    private func constrainTextField() {
+        guard let textFieldIsEmpty = ingredientsTextField.text?.isEmpty else {
+            return
+        }
+        if textFieldIsEmpty == true {
+            //Display view to say that there is no entry
+        }
+    }
+    
     private func getRecipes() {
         let text = ingredientsListTextView.text.formattedToRequest
         self.showIndicator()
@@ -83,7 +92,6 @@ class SearchViewController: UIViewController {
                 case .failure(let error):
                     print("Image data fetch failed")
                     print(error.localizedDescription)
-                    //Vérifier quand le dernier fail
                     imageUrlsCount -= 1
                     
                     self?.setImagePlaceHolder(at: url.offset)

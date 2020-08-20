@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 extension FavoriteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,7 +30,7 @@ extension FavoriteViewController: UITableViewDataSource {
         guard let recipe = recipes[indexPath.row].convertedToRecipeDetails, let image = recipe.imageData, let notationImage = UIImage(named: "like"), let durationImage = UIImage(named: "watch") else {
             return UITableViewCell()
         }
-        let ingredientList = "\(recipe.ingredientLines)"
+        let ingredientList = recipe.ingredientLines[0]
         cell.configureCell(recipeImage: image, recipeName: recipe.label, recipeDetails: ingredientList, notationLabel: recipe.yield, durationLabel: recipe.totalTime, notationImage: notationImage, durationImage: durationImage)
         print("SuccessFully passed data")
         return cell 
@@ -45,10 +46,28 @@ extension FavoriteViewController: UITableViewDataSource {
         
         pushRecipeDetail(withRecipe: recipe)
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            guard let recipes = coreDataManager.read() else {
+                return
+            }
+            for recipe in recipes {
+                print(recipe.name as Any)
+            }
+            let recipe = recipes[indexPath.row]
+            coreDataManager.remove(recipe: recipe)
+            tableView.reloadData()
+            for recipe in recipes {
+                print(recipe.name as Any)
+            }
+        }
+    }
 }
 
 extension FavoriteViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
+
 }

@@ -47,5 +47,14 @@ class CoreDataManager {
             return nil
         }
     }
+    
+    func remove(recipe: Recipes) {
+        persistentContainer.viewContext.delete(recipe)
+        guard persistentContainer.viewContext.hasChanges else {
+            return 
+        }
+        saveContext()
+        print("Successfuly remove")
+    }
 }
 

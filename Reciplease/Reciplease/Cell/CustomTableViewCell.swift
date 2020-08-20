@@ -35,8 +35,8 @@ class CustomTableViewCell: UITableViewCell {
         self.recipeImage.image = UIImage(data: recipeImage)
         self.recipeName.text = recipeName
         self.recipeDetails.text = recipeDetails
-        self.notationLabel.text = "\(notationLabel)"
-        self.durationLabel.text = "\(durationLabel)"
+        self.notationLabel.text = "\(Int(notationLabel).formatUsingAbbrevation())"
+        self.durationLabel.text = "\(durationLabel.convertMinutesInHours)"
         self.notationImage.image = notationImage
         self.durationImage.image = durationImage
         

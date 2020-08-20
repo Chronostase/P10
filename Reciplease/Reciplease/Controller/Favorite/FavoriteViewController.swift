@@ -17,7 +17,19 @@ class FavoriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+//        tableView.setEditing(true, animated: true)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(edit) )
     }
+//    override func setEditing(_ editing: Bool, animated: Bool) {
+//        super.setEditing(editing, animated: animated)
+//
+//        tableView.setEditing(editing, animated: animated)
+//    }
+    
+    @objc func edit() {
+        tableView.setEditing(true, animated: true)
+    }
+    
     
     private func setup() {
         setupCustomCell()
@@ -40,6 +52,10 @@ class FavoriteViewController: UIViewController {
         tableView.dataSource = self 
         tableView.delegate = self
     }
+    
+//    private func setEditingButton() {
+//        self.navigationItem.rightBarButtonItem
+//    }
     
     func pushRecipeDetail(withRecipe recipe: RecipeDetails) {
         let storyBoard = UIStoryboard(name: Constants.Storyboard.recipeDetailName, bundle: nil)
