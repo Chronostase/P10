@@ -10,53 +10,70 @@ import Foundation
 import UIKit
 
 class FavoriteViewController: UIViewController {
-    @IBOutlet var navItem: UINavigationItem!
+    
+    @IBOutlet var placeholderView: PlaceholderView!
     @IBOutlet weak var tableView: UITableView!
     var coreDataManager = CoreDataManager()
+    
+    @IBAction func editButton(_ sender: UIBarButtonItem) {
+        editTableView(sender)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-//        tableView.setEditing(true, animated: true)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(edit) )
-    }
-//    override func setEditing(_ editing: Bool, animated: Bool) {
-//        super.setEditing(editing, animated: animated)
-//
-//        tableView.setEditing(editing, animated: animated)
-//    }
-    
-    @objc func edit() {
-        tableView.setEditing(true, animated: true)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+        showPlaceholderView()
+    }
     
     private func setup() {
         setupCustomCell()
         setTableViewDelegate()
-        setNavigationBarTitle(title: "Favorites", navItem: navItem)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+    /** Add placholderView to indicate to user that something wrong append like no favorite to show */
+    func showPlaceholderView() {
+        guard let favoritesRecipe = coreDataManager.read() else {
+            return
+        }
+        if favoritesRecipe.isEmpty {
+            DispatchQueue.main.async {
+                self.placeholderView.isHidden = false
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.placeholderView.isHidden = true
+            }
         }
     }
     
+    /**Set the editing mode to On or Off, change edit button name*/
+    private func editTableView(_ sender: UIBarButtonItem) {
+        if tableView.isEditing {
+            sender.title = "Edit"
+            tableView.setEditing(false, animated: true)
+        }else {
+            sender.title = "Done"
+            tableView.setEditing(true, animated: true)
+        }
+    }
+    
+    /**fetch customCell*/
     private func setupCustomCell() {
         let nib = UINib(nibName: Constants.Cell.nibName, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: Constants.Cell.identifier)
     }
     
+    /**Set tableViewDelegate and Datasource to self*/
     private func setTableViewDelegate() {
         tableView.dataSource = self 
         tableView.delegate = self
     }
     
-//    private func setEditingButton() {
-//        self.navigationItem.rightBarButtonItem
-//    }
-    
+    /**Push the recipeDetailViewController */
     func pushRecipeDetail(withRecipe recipe: RecipeDetails) {
         let storyBoard = UIStoryboard(name: Constants.Storyboard.recipeDetailName, bundle: nil)
         guard let recipeDetailController = storyBoard.instantiateInitialViewController() as? RecipeDetailViewController else {

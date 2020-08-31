@@ -18,8 +18,8 @@ class RecipeListViewController: UIViewController {
         setupTableView()
         // Do any additional setup after loading the view.
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
+    @IBAction func backButton(_ sender: UIBarButtonItem) {
+        navigationController?.popViewController(animated: true)
     }
     
     private func setupTableView() {
@@ -27,6 +27,7 @@ class RecipeListViewController: UIViewController {
         setupCustomCell()
     }
     
+    /**Fetch custom cell*/
     private func setupCustomCell() {
         let nib = UINib(nibName: Constants.Cell.nibName, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: Constants.Cell.identifier)
@@ -37,6 +38,7 @@ class RecipeListViewController: UIViewController {
         tableView.delegate = self
     }
     
+    /**Push RecipeDetailViewController*/
     func pushRecipeDetail(withRecipe recipe: RecipeDetails) {
         let storyBoard = UIStoryboard(name: Constants.Storyboard.recipeDetailName, bundle: nil)
         guard let recipeDetailController = storyBoard.instantiateInitialViewController() as? RecipeDetailViewController else {

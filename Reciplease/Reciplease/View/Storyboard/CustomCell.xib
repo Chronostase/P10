@@ -119,6 +119,7 @@
                     <constraint firstAttribute="bottom" secondItem="BoD-Ym-rwq" secondAttribute="bottom" id="xzC-EL-dAz"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" red="0.20784313730000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="durationImage" destination="V1f-ba-1Mt" id="3zG-3B-Goo"/>
                 <outlet property="durationLabel" destination="06d-SQ-t8b" id="poO-mp-rA9"/>

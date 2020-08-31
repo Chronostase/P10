@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EAp-iw-JXU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3Ls-o7-XV7">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -81,9 +81,16 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="ClearButton:" destination="3Ls-o7-XV7" eventType="touchUpInside" id="fB7-qw-s9E"/>
+                                            <action selector="clearButton:" destination="3Ls-o7-XV7" eventType="touchUpInside" id="fB7-qw-s9E"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Meo-2a-nVK" customClass="PlaceholderView" customModule="Reciplease" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="212.5" width="374" height="459.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Please type an ingredient"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.20784313725490194" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -92,64 +99,60 @@
                                     <constraint firstItem="c6p-SA-rpA" firstAttribute="top" secondItem="3Q7-EP-tZG" secondAttribute="bottom" constant="15" id="9oL-gH-Hmo"/>
                                     <constraint firstItem="2aq-Js-v6e" firstAttribute="top" secondItem="nLC-sC-0TF" secondAttribute="bottom" constant="20" id="Btp-hf-P0A"/>
                                     <constraint firstItem="nLC-sC-0TF" firstAttribute="leading" secondItem="dgp-IY-hhY" secondAttribute="leading" constant="20" id="HEc-jo-07A"/>
+                                    <constraint firstItem="Meo-2a-nVK" firstAttribute="top" secondItem="nLC-sC-0TF" secondAttribute="top" id="HhY-qS-HLu"/>
                                     <constraint firstItem="2aq-Js-v6e" firstAttribute="leading" secondItem="dgp-IY-hhY" secondAttribute="leading" constant="30" id="Lbe-Dk-cdY"/>
                                     <constraint firstAttribute="trailing" secondItem="2aq-Js-v6e" secondAttribute="trailing" constant="30" id="P4W-y4-5LK"/>
                                     <constraint firstAttribute="trailing" secondItem="nLC-sC-0TF" secondAttribute="trailing" constant="20" id="TPY-4Q-zKd"/>
                                     <constraint firstItem="c6p-SA-rpA" firstAttribute="leading" secondItem="dgp-IY-hhY" secondAttribute="leading" constant="30" id="Wcf-s2-DSn"/>
+                                    <constraint firstItem="nLC-sC-0TF" firstAttribute="trailing" secondItem="Meo-2a-nVK" secondAttribute="trailing" id="duL-HP-sYD"/>
                                     <constraint firstItem="3Q7-EP-tZG" firstAttribute="top" secondItem="dgp-IY-hhY" secondAttribute="top" constant="30" id="fMn-Th-4Hk"/>
+                                    <constraint firstItem="Meo-2a-nVK" firstAttribute="leading" secondItem="nLC-sC-0TF" secondAttribute="leading" id="g9A-Qb-K4l"/>
                                     <constraint firstItem="2aq-Js-v6e" firstAttribute="height" secondItem="dgp-IY-hhY" secondAttribute="height" multiplier="0.08" id="gEy-Bb-vtt"/>
                                     <constraint firstAttribute="bottom" secondItem="2aq-Js-v6e" secondAttribute="bottom" constant="20" id="hNq-Ln-qHe"/>
                                     <constraint firstItem="3Q7-EP-tZG" firstAttribute="leading" secondItem="dgp-IY-hhY" secondAttribute="leading" id="mF0-OG-saI"/>
                                     <constraint firstAttribute="trailing" secondItem="Lz1-Cg-iUx" secondAttribute="trailing" constant="20" id="sYl-r4-TKs"/>
                                     <constraint firstAttribute="trailing" secondItem="3Q7-EP-tZG" secondAttribute="trailing" id="tuz-Xq-i3c"/>
                                     <constraint firstItem="3Q7-EP-tZG" firstAttribute="height" secondItem="dgp-IY-hhY" secondAttribute="height" multiplier="0.15" id="xMG-uZ-TA0"/>
+                                    <constraint firstItem="nLC-sC-0TF" firstAttribute="bottom" secondItem="Meo-2a-nVK" secondAttribute="bottom" id="z2X-H4-8mv"/>
                                     <constraint firstItem="Lz1-Cg-iUx" firstAttribute="centerY" secondItem="c6p-SA-rpA" secondAttribute="centerY" id="zqS-fh-V6N"/>
                                 </constraints>
                             </view>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mF9-qL-QVP">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <color key="barTintColor" red="0.36470588235294116" green="0.36078431372549019" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="30"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Reciplease" id="gc0-SK-6Hi"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.36470588235294116" green="0.36078431372549019" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="mF9-qL-QVP" firstAttribute="trailing" secondItem="kjo-wr-Zf1" secondAttribute="trailing" id="0mV-VR-ox2"/>
                             <constraint firstItem="kjo-wr-Zf1" firstAttribute="bottom" secondItem="dgp-IY-hhY" secondAttribute="bottom" id="11j-65-yWW"/>
                             <constraint firstItem="kjo-wr-Zf1" firstAttribute="trailing" secondItem="dgp-IY-hhY" secondAttribute="trailing" id="1W2-yJ-vaf"/>
                             <constraint firstItem="dgp-IY-hhY" firstAttribute="leading" secondItem="kjo-wr-Zf1" secondAttribute="leading" id="1Y8-IK-ocp"/>
-                            <constraint firstItem="dgp-IY-hhY" firstAttribute="top" secondItem="kjo-wr-Zf1" secondAttribute="top" id="LgJ-07-AfC"/>
+                            <constraint firstItem="mF9-qL-QVP" firstAttribute="top" secondItem="kjo-wr-Zf1" secondAttribute="top" id="8ca-rA-JAz"/>
+                            <constraint firstItem="dgp-IY-hhY" firstAttribute="top" secondItem="mF9-qL-QVP" secondAttribute="bottom" id="Lk7-A0-6hN"/>
+                            <constraint firstItem="mF9-qL-QVP" firstAttribute="leading" secondItem="kjo-wr-Zf1" secondAttribute="leading" id="rKd-YE-Whw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kjo-wr-Zf1"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="BMu-C4-nWl">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Title" id="W3g-lE-Tzo"/>
                     <connections>
                         <outlet property="ingredientsListTextView" destination="nLC-sC-0TF" id="z20-UA-yQp"/>
                         <outlet property="ingredientsTextField" destination="i2O-zv-6AE" id="TpX-do-2No"/>
-                        <outlet property="navItem" destination="W3g-lE-Tzo" id="fLB-Am-JrA"/>
+                        <outlet property="placholderView" destination="Meo-2a-nVK" id="XmH-js-qJz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1nG-ua-efU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="303" y="-56"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="DXj-vc-hiz">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="anf-MQ-GwZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <navigationController id="EAp-iw-JXU" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aL9-gM-mjI">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.20784313730000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="26"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="3Ls-o7-XV7" kind="relationship" relationship="rootViewController" id="yfv-jl-Uzf"/>
-                    </connections>
-                </navigationController>
-            </objects>
-            <point key="canvasLocation" x="-687" y="-56"/>
+            <point key="canvasLocation" x="302.89855072463769" y="-56.25"/>
         </scene>
     </scenes>
 </document>

@@ -58,6 +58,7 @@ extension FavoriteViewController: UITableViewDataSource {
             let recipe = recipes[indexPath.row]
             coreDataManager.remove(recipe: recipe)
             tableView.reloadData()
+            showPlaceholderView()
             for recipe in recipes {
                 print(recipe.name as Any)
             }

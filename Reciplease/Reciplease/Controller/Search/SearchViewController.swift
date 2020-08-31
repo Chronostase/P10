@@ -7,12 +7,11 @@
 //
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UITextViewDelegate {
     
     //MARK: - Properties
-    
-    
-    @IBOutlet var navItem: UINavigationItem!
+
+    @IBOutlet var placholderView: PlaceholderView!
     @IBOutlet weak var ingredientsTextField: UITextField!
     @IBOutlet weak var ingredientsListTextView: UITextView!
     var recipeList: RecipeList?
@@ -26,21 +25,24 @@ class SearchViewController: UIViewController {
     
     @IBAction func searchButton(_ sender: UIButton) {
         ingredientsTextField.resignFirstResponder()
-        getRecipes()
+        if ingredientsTextViewIsEmpty() {
+            placholderView.isHidden = false
+        } else {
+            placholderView.isHidden = true
+            getRecipes()
+        }
     }
-    @IBAction func ClearButton(_ sender: UIButton) {
+    @IBAction func clearButton(_ sender: UIButton) {
         ingredientsListTextView.text = ""
+        placholderView.isHidden = false
     }
     
-    private func constrainTextField() {
-        guard let textFieldIsEmpty = ingredientsTextField.text?.isEmpty else {
-            return
-        }
-        if textFieldIsEmpty == true {
-            //Display view to say that there is no entry
-        }
+    /**Check if textView is empty and return Bool*/
+    private func ingredientsTextViewIsEmpty() -> Bool {
+        return self.ingredientsListTextView.text.isEmpty
     }
     
+    /**Launch recipeCall with user ingredients*/
     private func getRecipes() {
         let text = ingredientsListTextView.text.formattedToRequest
         self.showIndicator()
@@ -63,6 +65,7 @@ class SearchViewController: UIViewController {
         }
     }
     
+    /**Launch imageCall with user for each recipe*/
     private func getImages() {
         guard let imageUrls = recipeList?.hits.compactMap({$0.recipe.image}) else {
             return
@@ -114,7 +117,6 @@ class SearchViewController: UIViewController {
     /** Set textField and textView Delegate and add button to keyboard toolbar*/
     private func setup() {
         setTextFielAndTextViewdDelegate()
-        setNavigationBarTitle(title: "Reciplease", navItem: navItem)
         setupAddButton()
     }
     
@@ -147,8 +149,20 @@ class SearchViewController: UIViewController {
     }
     
     @objc func tapAddButton() {
-        setTextFieldValueToTextView()
-        ingredientsTextField.text = nil 
+        if textFieldIsEmpty() {
+            placholderView.isHidden = false
+        } else {
+            setTextFieldValueToTextView()
+            ingredientsTextField.text = nil
+            placholderView.isHidden = true
+        }
+    }
+    
+    private func textFieldIsEmpty() -> Bool {
+        guard let isEmpty = ingredientsTextField.text?.isEmpty else {
+            return true
+        }
+        return isEmpty
     }
     
     /** Set textField and TextViewDelegate to SearchViewController */

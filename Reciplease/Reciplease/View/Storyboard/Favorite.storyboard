@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QOX-sC-kRo">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Favorite-->
+        <scene sceneID="gm7-bz-Ucp">
+            <objects>
+                <viewController title="Favorite" id="QOX-sC-kRo" customClass="FavoriteViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aMB-Ae-wOI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vWV-aI-KE3">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" red="0.20784313725490194" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ty1-9a-il1" customClass="PlaceholderView" customModule="Reciplease" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Ho you don't have any favorites"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGN-fc-f4q">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <color key="barTintColor" red="0.36470588235294116" green="0.36078431372549019" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="31"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Favorites" id="2Cu-1i-UX0">
+                                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Cna-a5-aeT">
+                                            <connections>
+                                                <action selector="editButton:" destination="QOX-sC-kRo" id="BCA-Ma-e5T"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.36470588235294116" green="0.36078431372549019" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="hGN-fc-f4q" firstAttribute="trailing" secondItem="FAI-og-rjO" secondAttribute="trailing" id="Cm2-iN-tAi"/>
+                            <constraint firstItem="ty1-9a-il1" firstAttribute="top" secondItem="vWV-aI-KE3" secondAttribute="top" id="FlX-gl-vTP"/>
+                            <constraint firstItem="FAI-og-rjO" firstAttribute="bottom" secondItem="vWV-aI-KE3" secondAttribute="bottom" id="H1e-Cn-X5D"/>
+                            <constraint firstItem="hGN-fc-f4q" firstAttribute="top" secondItem="FAI-og-rjO" secondAttribute="top" id="LB3-9B-5lG"/>
+                            <constraint firstItem="hGN-fc-f4q" firstAttribute="leading" secondItem="FAI-og-rjO" secondAttribute="leading" id="Nkm-pI-q27"/>
+                            <constraint firstItem="FAI-og-rjO" firstAttribute="trailing" secondItem="vWV-aI-KE3" secondAttribute="trailing" id="UKb-oj-59V"/>
+                            <constraint firstItem="vWV-aI-KE3" firstAttribute="bottom" secondItem="ty1-9a-il1" secondAttribute="bottom" id="Xro-nh-akM"/>
+                            <constraint firstItem="vWV-aI-KE3" firstAttribute="trailing" secondItem="ty1-9a-il1" secondAttribute="trailing" id="ajN-ft-Puw"/>
+                            <constraint firstItem="ty1-9a-il1" firstAttribute="leading" secondItem="vWV-aI-KE3" secondAttribute="leading" id="dvN-j0-ibb"/>
+                            <constraint firstItem="vWV-aI-KE3" firstAttribute="top" secondItem="hGN-fc-f4q" secondAttribute="bottom" id="ifq-VE-bjd"/>
+                            <constraint firstItem="vWV-aI-KE3" firstAttribute="leading" secondItem="FAI-og-rjO" secondAttribute="leading" id="wcA-8R-R6p"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FAI-og-rjO"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="Fkp-8f-GJv"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="placeholderView" destination="ty1-9a-il1" id="8kN-2T-jhK"/>
+                        <outlet property="tableView" destination="vWV-aI-KE3" id="W2n-hb-gvg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HQw-Dn-0p3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="128.98550724637681" y="63.616071428571423"/>
+        </scene>
+    </scenes>
+</document>

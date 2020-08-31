@@ -12,7 +12,7 @@ import SafariServices
 
 class RecipeDetailViewController: UIViewController {
     
-    @IBOutlet var navItem: UINavigationItem!
+    @IBOutlet var starButton: UIBarButtonItem!
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var ingredientsTextView: UITextView!
     @IBOutlet weak var recipeName: UILabel!
@@ -25,6 +25,13 @@ class RecipeDetailViewController: UIViewController {
             }
         }
     }
+    @IBAction func starBoutton(_ sender: UIBarButtonItem) {
+        addOrRemoveFavorite(button: sender)
+    }
+    
+    @IBAction func backButton(_ sender: UIBarButtonItem) {
+        popViewController()
+    }
     
     @IBAction func getDirectionButton(_ sender: UIButton) {
         showWebView()
@@ -32,22 +39,6 @@ class RecipeDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
-    }
-    
-    private func setup() {
-        setupNavigationBarButton()
-        setNavigationBarTitle(title: "Reciplease", navItem: navItem)
-//        setFavoriteButtonColor()
-    }
-    
-    /** Show recipe webPage */
-    private func showWebView() {
-        guard let recipeUrl = recipe?.url, let url = URL(string: recipeUrl) else {
-            return
-        }
-        let safariViewController = SFSafariViewController(url: url)
-        present(safariViewController, animated: true)
     }
     /** Set image, recipeName and ingredientDetail */
     private func setupUIForRecipe () {
@@ -59,7 +50,6 @@ class RecipeDetailViewController: UIViewController {
         recipeImage.image = image
         var recipeIngredients = ""
         for element in recipe.ingredientLines {
-            //Problème duplique tiret
             if element.first == "-" {
                 recipeIngredients.append((element + "*").formattedArrayToReading)
             } else {
@@ -71,24 +61,11 @@ class RecipeDetailViewController: UIViewController {
         setFavoriteButtonColor()
     }
     
-    
-    /** Add Favorite button to navigationBar*/
-    private func setupNavigationBarButton() {
-        let button = UIButton(type: .custom)
-        guard let image = UIImage(named: "star") else {
-            return
-        }
-        button.setImage(image, for: .normal)
-        button.tintColor = .white
-        
-        button.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
-        button.addTarget(self, action: #selector(addToFavorite), for: .touchUpInside)
-        let rightButton = UIBarButtonItem(customView: button)
-        
-        navigationItem.rightBarButtonItem = rightButton
-    }
-    
-    @objc private func addToFavorite(button: UIButton) {
+    /**
+     Serve to add recipe in favorite if button.tintColor == .white else remove to favorite
+     - Parameter button: is use to check starButton Color
+     */
+    private func addOrRemoveFavorite(button: UIBarButtonItem) {
         if button.tintColor == UIColor.white {
             button.tintColor = .systemYellow
             saveObject()
@@ -96,7 +73,9 @@ class RecipeDetailViewController: UIViewController {
             removeRecipe()
         }
     }
-    
+    /**
+     Fetch recipe save in coreData, check if currentRecipe.Name == dataFetch.name if it's True remove current recipe from CoreData
+     */
     private func removeRecipe() {
         guard let favoriteRecipes = coreDataManager.read() else {
             return
@@ -110,21 +89,20 @@ class RecipeDetailViewController: UIViewController {
         }
         setFavoriteButtonColor()
     }
-    
+    /**Check if recipe is alreadyInFavorite if True change starButton.tintColor to Yellow, if it's False starButton.tintColor == .white*/
     private func setFavoriteButtonColor() {
         if isAlreadyInFavorite() {
-            navigationItem.rightBarButtonItem?.customView?.tintColor = .systemYellow
+            starButton.tintColor = .systemYellow
         } else {
-            navigationItem.rightBarButtonItem?.customView?.tintColor = .white
+            starButton.tintColor = .white
         }
     }
-    
+    /**Fetch recipe from CoreData check if currentRecipe.Name == dataFetch.name if true return true else return false*/
     private func isAlreadyInFavorite() -> Bool {
         var indicator = false
         guard let favoriteRecipes = coreDataManager.read() else {
             return false
         }
-//        favoriteRecipes.first { $0.name == recipeName.text }
         if favoriteRecipes.count > 0 {
             for recipe in favoriteRecipes {
                 // Try to compare complete recipe
@@ -136,6 +114,21 @@ class RecipeDetailViewController: UIViewController {
         return indicator
     }
     
+    /** Made disappear current ViewController */
+    private func popViewController() {
+            self.navigationController?.popViewController(animated: true)
+    }
+    
+    /** Show recipe webPage */
+    private func showWebView() {
+        guard let recipeUrl = recipe?.url, let url = URL(string: recipeUrl) else {
+            return
+        }
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true)
+    }
+    
+    /**Use to save a Recipe in CoreData*/
     private func saveObject() {
         print("Enter in saveObject")
         guard let recipe = self.recipe else {
