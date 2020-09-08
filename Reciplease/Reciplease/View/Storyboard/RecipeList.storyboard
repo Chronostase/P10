@@ -24,6 +24,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
                                 <color key="backgroundColor" red="0.36470588235294116" green="0.36078431372549019" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJP-Jr-NXZ" customClass="PlaceholderView" customModule="Reciplease" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Sorry we don't found any recipe with your ingredients"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9d-9k-DXE">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <color key="barTintColor" red="0.36470588235294116" green="0.36078431372549019" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -46,19 +53,24 @@
                         <constraints>
                             <constraint firstItem="X9d-9k-DXE" firstAttribute="trailing" secondItem="00O-WQ-hXE" secondAttribute="trailing" id="1Sq-2a-ePy"/>
                             <constraint firstItem="YQR-k9-16m" firstAttribute="top" secondItem="Ixj-Px-kRb" secondAttribute="bottom" id="8IO-iy-bZh"/>
+                            <constraint firstItem="YQR-k9-16m" firstAttribute="trailing" secondItem="uJP-Jr-NXZ" secondAttribute="trailing" id="8l8-06-ODZ"/>
                             <constraint firstItem="00O-WQ-hXE" firstAttribute="trailing" secondItem="Ixj-Px-kRb" secondAttribute="trailing" id="LJc-ut-diC"/>
                             <constraint firstItem="X9d-9k-DXE" firstAttribute="top" secondItem="00O-WQ-hXE" secondAttribute="top" id="OfT-mc-onD"/>
                             <constraint firstItem="00O-WQ-hXE" firstAttribute="trailing" secondItem="YQR-k9-16m" secondAttribute="trailing" id="VAs-AC-re0"/>
-                            <constraint firstItem="00O-WQ-hXE" firstAttribute="bottom" secondItem="YQR-k9-16m" secondAttribute="bottom" id="WrV-NY-6EU"/>
                             <constraint firstItem="X9d-9k-DXE" firstAttribute="bottom" secondItem="Ixj-Px-kRb" secondAttribute="bottom" id="ZNi-hk-e6J"/>
                             <constraint firstItem="YQR-k9-16m" firstAttribute="leading" secondItem="00O-WQ-hXE" secondAttribute="leading" id="aBP-MN-6FI"/>
                             <constraint firstItem="X9d-9k-DXE" firstAttribute="leading" secondItem="00O-WQ-hXE" secondAttribute="leading" id="gMh-Cj-EuT"/>
+                            <constraint firstItem="YQR-k9-16m" firstAttribute="bottom" secondItem="00O-WQ-hXE" secondAttribute="bottom" id="h0J-kF-j1s"/>
                             <constraint firstItem="Ixj-Px-kRb" firstAttribute="top" secondItem="aQa-Ch-JQN" secondAttribute="top" id="hU1-wZ-9eP"/>
+                            <constraint firstItem="uJP-Jr-NXZ" firstAttribute="leading" secondItem="YQR-k9-16m" secondAttribute="leading" id="lm5-3t-piU"/>
                             <constraint firstItem="Ixj-Px-kRb" firstAttribute="leading" secondItem="00O-WQ-hXE" secondAttribute="leading" id="loD-qc-qNG"/>
+                            <constraint firstItem="uJP-Jr-NXZ" firstAttribute="top" secondItem="YQR-k9-16m" secondAttribute="top" constant="-88" id="mi7-hE-oFm"/>
+                            <constraint firstItem="YQR-k9-16m" firstAttribute="bottom" secondItem="uJP-Jr-NXZ" secondAttribute="bottom" id="vQI-0x-kyh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="00O-WQ-hXE"/>
                     </view>
                     <connections>
+                        <outlet property="placeholderView" destination="uJP-Jr-NXZ" id="OsP-iW-LF0"/>
                         <outlet property="tableView" destination="YQR-k9-16m" id="vXb-wy-PHP"/>
                     </connections>
                 </viewController>

@@ -10,7 +10,7 @@ import UIKit
 class SearchViewController: UIViewController, UITextViewDelegate {
     
     //MARK: - Properties
-
+    
     @IBOutlet var placholderView: PlaceholderView!
     @IBOutlet weak var ingredientsTextField: UITextField!
     @IBOutlet weak var ingredientsListTextView: UITextView!
@@ -35,6 +35,7 @@ class SearchViewController: UIViewController, UITextViewDelegate {
     @IBAction func clearButton(_ sender: UIButton) {
         ingredientsListTextView.text = ""
         placholderView.isHidden = false
+        pushRecipeListTableView()
     }
     
     /**Check if textView is empty and return Bool*/
@@ -49,67 +50,17 @@ class SearchViewController: UIViewController, UITextViewDelegate {
         RecipeService().getData(userEntry: text) { [weak self] result in
             self?.hideIndicator()
             switch result {
-            case .success(let recipeList):
-                guard let recipeList = recipeList else {
-                    print("there is no recipeList")
+            case .success(let recipeList) :
+                guard let recipeList = recipeList, !recipeList.hits.isEmpty else {
+                    self?.displayAlert(message: Constants.Error.userEntryError)
+                    self?.ingredientsListTextView.text = nil
                     return
                 }
                 self?.recipeList = recipeList
-                self?.getImages()
-                
-                print(recipeList.hits.count)
+                self?.pushRecipeListTableView()
                 
             case .failure(let error):
                 print(error.localizedDescription)
-            }
-        }
-    }
-    
-    /**Launch imageCall with user for each recipe*/
-    private func getImages() {
-        guard let imageUrls = recipeList?.hits.compactMap({$0.recipe.image}) else {
-            return
-        }
-        
-        var imageUrlsCount = imageUrls.count - 1
-        imageUrls.enumerated().forEach { url in
-            RecipeService().getImage(url: url.element) { [weak self] result in
-                switch result {
-                case .success(let data):
-                    guard let data = data else {
-                        return
-                    }
-                    
-                    self?.recipeList?.hits[url.offset].recipe.imageData = data
-                    print("Image data received, \(String(describing: self?.recipeList?.hits[url.offset].recipe.imageData))")
-                    
-                    if (self?.recipeList?.hits.filter({ $0.recipe.imageData == nil }).isEmpty) == true {
-                        // All calls done
-                        print("\n")
-                        self?.recipeList?.hits.forEach {
-                            print($0.recipe.imageData as Any)
-                        }
-                        self?.pushRecipeListTableView()
-                        return
-                    }
-                case .failure(let error):
-                    print("Image data fetch failed")
-                    print(error.localizedDescription)
-                    imageUrlsCount -= 1
-                    
-                    self?.setImagePlaceHolder(at: url.offset)
-                    //Filtre image data == nil si ça fonctionne rentre dans la condi, gérer cas particulier
-                    if (self?.recipeList?.hits.filter({ $0.recipe.imageData == nil }).isEmpty) == true {
-                        print("\n")
-                        self?.recipeList?.hits.forEach {
-                            print($0.recipe.imageData as Any)
-                        }
-                        self?.pushRecipeListTableView()
-                        return
-                    } else {
-                        print("ENTER IN ERROR CASE ")
-                    }
-                }
             }
         }
     }
@@ -118,15 +69,6 @@ class SearchViewController: UIViewController, UITextViewDelegate {
     private func setup() {
         setTextFielAndTextViewdDelegate()
         setupAddButton()
-    }
-    
-    /** Set image PlaceHolder*/
-    private func setImagePlaceHolder(at index: Int) {
-        guard let placeholderImage = UIImage(named: "placeholder")?.pngData() else {
-            return
-        }
-        
-        self.recipeList?.hits[index].recipe.imageData = placeholderImage
     }
     
     /** Set user entry to textView */
@@ -143,17 +85,23 @@ class SearchViewController: UIViewController, UITextViewDelegate {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
         toolBar.sizeToFit()
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(tapAddButton))
+        let doneButton = UIBarButtonItem(title: Constants.UIElement.addButton, style: .done, target: self, action: #selector(tapAddButton))
         toolBar.setItems([flexibleSpace, doneButton], animated: false)
         ingredientsTextField.inputAccessoryView = toolBar
     }
     
     @objc func tapAddButton() {
         if textFieldIsEmpty() {
-            placholderView.isHidden = false
+            if ingredientsListTextView.text == nil {
+                placholderView.isHidden = false
+            } else {
+                placholderView.isHidden = false
+                ingredientsListTextView.isHidden = true
+            }
         } else {
             setTextFieldValueToTextView()
             ingredientsTextField.text = nil
+            ingredientsListTextView.isHidden = false
             placholderView.isHidden = true
         }
     }
@@ -178,7 +126,7 @@ class SearchViewController: UIViewController, UITextViewDelegate {
             return
         }
         recipeListViewController.recipeList = recipeList
-        recipeListViewController.navigationController?.navigationBar.topItem?.title = "Reciplease"
+        recipeListViewController.navigationController?.navigationBar.topItem?.title = Constants.ControllerName.reciplease
         push(recipeListViewController)
     }
     

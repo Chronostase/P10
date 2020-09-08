@@ -13,7 +13,7 @@ class CoreDataManager {
     // MARK: - Core Data stack
     
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "Reciplease")
+        let container = NSPersistentContainer(name: Constants.ControllerName.reciplease)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -43,7 +43,6 @@ class CoreDataManager {
             let recipes = try persistentContainer.viewContext.fetch(request)
             return recipes
         } catch {
-            print("Can't get data from database")
             return nil
         }
     }
@@ -54,7 +53,6 @@ class CoreDataManager {
             return 
         }
         saveContext()
-        print("Successfuly remove")
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var recipeImage: UIImageView!
@@ -19,7 +20,6 @@ class CustomTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     override func prepareForReuse() {
@@ -31,15 +31,15 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     //Configure cell with all properties
-    func configureCell(recipeImage: Data, recipeName: String, recipeDetails: String, notationLabel: Double, durationLabel: Double, notationImage: UIImage, durationImage: UIImage) {
-        self.recipeImage.image = UIImage(data: recipeImage)
-        self.recipeName.text = recipeName
-        self.recipeDetails.text = recipeDetails
-        self.notationLabel.text = "\(Int(notationLabel).formatUsingAbbrevation())"
-        self.durationLabel.text = "\(durationLabel.convertMinutesInHours)"
-        self.notationImage.image = notationImage
-        self.durationImage.image = durationImage
-        
+    func configureCell(recipe: RecipeDetails) {
+        let url = URL(string: recipe.image)
+        self.recipeImage.kf.setImage(with: url, placeholder: UIImage(named: Constants.UIElement.placeholderImage), options: nil, progressBlock: nil)
+        self.recipeName.text = recipe.label
+        self.recipeDetails.text = recipe.ingredientLines.first
+        self.notationLabel.text = "\(Int(recipe.yield).formatUsingAbbrevation())"
+        self.durationLabel.text = "\(recipe.totalTime.convertMinutesInHours)"
+        self.notationImage.image = UIImage(named: Constants.UIElement.watchImage)
+        self.durationImage.image = UIImage(named: Constants.UIElement.likeImage)
     }
 }
 

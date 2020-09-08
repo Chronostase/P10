@@ -53,10 +53,10 @@ class FavoriteViewController: UIViewController {
     /**Set the editing mode to On or Off, change edit button name*/
     private func editTableView(_ sender: UIBarButtonItem) {
         if tableView.isEditing {
-            sender.title = "Edit"
+            sender.title = Constants.UIElement.editButton
             tableView.setEditing(false, animated: true)
         }else {
-            sender.title = "Done"
+            sender.title = Constants.UIElement.doneButton
             tableView.setEditing(true, animated: true)
         }
     }

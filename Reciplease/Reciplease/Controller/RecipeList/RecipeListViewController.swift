@@ -10,14 +10,18 @@ import UIKit
 
 class RecipeListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var placeholderView: PlaceholderView!
     
     var recipeList: RecipeList? 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) {
+        showPlaceholderView()
+    }
+    
     @IBAction func backButton(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
     }
@@ -38,13 +42,35 @@ class RecipeListViewController: UIViewController {
         tableView.delegate = self
     }
     
+    /** Add placholderView to indicate to user that something wrong append like no favorite to show */
+    private func showPlaceholderView() {
+        guard let favoritesRecipe = recipeList else {
+            return
+        }
+        if favoritesRecipe.hits.isEmpty {
+            DispatchQueue.main.async {
+                self.placeholderView.isHidden = false
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.placeholderView.isHidden = true
+            }
+        }
+    }
+    
     /**Push RecipeDetailViewController*/
-    func pushRecipeDetail(withRecipe recipe: RecipeDetails) {
+    func pushRecipeDetail(withRecipe recipe: RecipeDetails, indexPath: IndexPath) {
         let storyBoard = UIStoryboard(name: Constants.Storyboard.recipeDetailName, bundle: nil)
         guard let recipeDetailController = storyBoard.instantiateInitialViewController() as? RecipeDetailViewController else {
             return
         }
         recipeDetailController.recipe = recipe
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? CustomTableViewCell, let image = cell.recipeImage.image else {
+            return
+        }
+        
+        recipeDetailController.recipe?.imageData = image.pngData()
         push(recipeDetailController)
     }
 

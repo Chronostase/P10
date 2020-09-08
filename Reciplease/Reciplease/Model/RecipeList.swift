@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 
 struct RecipeList: Decodable {
-    var q: String
     var hits: [Hit]
 }
 

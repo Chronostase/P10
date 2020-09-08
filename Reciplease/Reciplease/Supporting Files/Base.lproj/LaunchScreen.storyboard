@@ -15,7 +15,21 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chef" translatesAutoresizingMaskIntoConstraints="NO" id="ZYO-7o-dMN">
+                                <rect key="frame" x="41.5" y="282.5" width="331" height="331"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ZYO-7o-dMN" secondAttribute="height" multiplier="1:1" id="qjR-CT-PNu"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20784313725490194" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ZYO-7o-dMN" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Esf-W2-Fnp"/>
+                            <constraint firstItem="ZYO-7o-dMN" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Sdi-tu-4q9"/>
+                            <constraint firstItem="ZYO-7o-dMN" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.8" id="qP1-Th-R31"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -24,4 +38,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="chef" width="128" height="128"/>
+    </resources>
 </document>

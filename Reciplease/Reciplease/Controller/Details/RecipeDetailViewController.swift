@@ -42,12 +42,11 @@ class RecipeDetailViewController: UIViewController {
     }
     /** Set image, recipeName and ingredientDetail */
     private func setupUIForRecipe () {
-        guard let imageData = recipe?.imageData, let recipe = recipe else {
+        guard let recipe = recipe, let data = recipe.imageData else {
             return
         }
-        let image = UIImage(data: imageData)
         recipeName.text = recipe.label
-        recipeImage.image = image
+        recipeImage.image = UIImage(data: data)
         var recipeIngredients = ""
         for element in recipe.ingredientLines {
             if element.first == "-" {
@@ -130,7 +129,6 @@ class RecipeDetailViewController: UIViewController {
     
     /**Use to save a Recipe in CoreData*/
     private func saveObject() {
-        print("Enter in saveObject")
         guard let recipe = self.recipe else {
             return
         }
@@ -144,9 +142,8 @@ class RecipeDetailViewController: UIViewController {
         favoriteRecipe.url = recipe.url
         do {
             try coreDataManager.persistentContainer.viewContext.save()
-            print("SuccessFully save")
         } catch {
-            displayAlert(message: "Can't save recipe")
+            displayAlert(message: Constants.CoreDataError.saveError )
         }
     }
 }

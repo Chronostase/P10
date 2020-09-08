@@ -19,25 +19,21 @@ extension FavoriteViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("Enter TableView")
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Cell.identifier, for: indexPath) as? CustomTableViewCell else {
-            print("failed 1")
             return UITableViewCell()
         }
         guard let recipes = coreDataManager.read() else {
             return UITableViewCell()
         }
-        guard let recipe = recipes[indexPath.row].convertedToRecipeDetails, let image = recipe.imageData, let notationImage = UIImage(named: "like"), let durationImage = UIImage(named: "watch") else {
+        guard let recipe = recipes[indexPath.row].convertedToRecipeDetails else {
             return UITableViewCell()
         }
-        let ingredientList = recipe.ingredientLines[0]
-        cell.configureCell(recipeImage: image, recipeName: recipe.label, recipeDetails: ingredientList, notationLabel: recipe.yield, durationLabel: recipe.totalTime, notationImage: notationImage, durationImage: durationImage)
-        print("SuccessFully passed data")
+        cell.configureCell(recipe: recipe)
+        
         return cell 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Enter in did Select")
         self.showIndicator()
         guard let recipes = coreDataManager.read(), let recipe = recipes[indexPath.row].convertedToRecipeDetails else {
             return

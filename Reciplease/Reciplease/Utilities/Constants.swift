@@ -33,11 +33,34 @@ enum Constants {
         static let recipeDetailName = "RecipeDetail"
     }
     
+    enum ControllerName {
+        static let reciplease = "Reciplease"
+    }
+    
     enum Service {
         static let baseUrl = "https://api.edamam.com/search?q="
         static let idParameter = "&app_id="
         static let keyParameter = "&app_key="
         
+    }
+    
+    enum UIElement {
+        static let addButton = "Add"
+        static let editButton = "Edit"
+        static let doneButton = "Done"
+        static let placeholderImage = "placeholder"
+        static let watchImage = "watch"
+        static let likeImage = "like"
+        static let alertButton = "OK"
+    }
+    
+    enum CoreDataError {
+        static let saveError = "Can't save recipe"
+    }
+    
+    enum AppIdAndKey {
+        static let recipeSearchId = "recipeSearchAppId"
+        static let recipeSearchKey = "recipeSearchAppKey"
     }
     
 }
