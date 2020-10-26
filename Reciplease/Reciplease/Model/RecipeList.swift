@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import CoreData
+//import CoreData
 
 struct RecipeList: Decodable {
     var hits: [Hit]

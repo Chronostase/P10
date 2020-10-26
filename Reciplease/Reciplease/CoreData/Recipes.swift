@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+
 class Recipes: NSManagedObject {
     
     var convertedToRecipeDetails: RecipeDetails? {

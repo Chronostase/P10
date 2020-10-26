@@ -67,7 +67,23 @@ class RecipeDetailViewController: UIViewController {
     private func addOrRemoveFavorite(button: UIBarButtonItem) {
         if button.tintColor == UIColor.white {
             button.tintColor = .systemYellow
-            saveObject()
+//            saveObject()
+            guard let recipe = self.recipe else {
+                return
+            }
+            
+            do {
+               try coreDataManager.saveObject(recipe: recipe, ingredientstext: ingredientsTextView.text)
+            } catch let error {
+                print(error.localizedDescription)
+                displayAlert(message: Constants.CoreDataError.saveError)
+                
+//                switch error {
+//                }
+            }
+//            if coreDataManager.didSaveObject(recipe: recipe, ingredientstext: ingredientsTextView.text) == false {
+//                displayAlert(message: Constants.CoreDataError.saveError)
+//            }
         } else {
             removeRecipe()
         }
@@ -123,27 +139,29 @@ class RecipeDetailViewController: UIViewController {
         guard let recipeUrl = recipe?.url, let url = URL(string: recipeUrl) else {
             return
         }
+        print(recipeUrl)
         let safariViewController = SFSafariViewController(url: url)
         present(safariViewController, animated: true)
     }
     
     /**Use to save a Recipe in CoreData*/
-    private func saveObject() {
-        guard let recipe = self.recipe else {
-            return
-        }
-        let favoriteRecipe = Recipes(context: coreDataManager.persistentContainer.viewContext)
-        favoriteRecipe.name = recipe.label
-        favoriteRecipe.ingredientLines = self.ingredientsTextView.text
-        favoriteRecipe.image = recipe.image
-        favoriteRecipe.totalTime = recipe.totalTime
-        favoriteRecipe.yield = recipe.yield
-        favoriteRecipe.imageData = recipe.imageData
-        favoriteRecipe.url = recipe.url
-        do {
-            try coreDataManager.persistentContainer.viewContext.save()
-        } catch {
-            displayAlert(message: Constants.CoreDataError.saveError )
-        }
-    }
+//    private func saveObject() {
+//        guard let recipe = self.recipe else {
+//            return
+//        }
+//
+//        let favoriteRecipe = Recipes(context: coreDataManager.persistentContainer.viewContext)
+//        favoriteRecipe.name = recipe.label
+//        favoriteRecipe.ingredientLines = self.ingredientsTextView.text
+//        favoriteRecipe.image = recipe.image
+//        favoriteRecipe.totalTime = recipe.totalTime
+//        favoriteRecipe.yield = recipe.yield
+//        favoriteRecipe.imageData = recipe.imageData
+//        favoriteRecipe.url = recipe.url
+//        do {
+//            try coreDataManager.persistentContainer.viewContext.save()
+//        } catch {
+//            displayAlert(message: Constants.CoreDataError.saveError )
+//        }
+//    }
 }

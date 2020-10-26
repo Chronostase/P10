@@ -35,7 +35,6 @@ class SearchViewController: UIViewController, UITextViewDelegate {
     @IBAction func clearButton(_ sender: UIButton) {
         ingredientsListTextView.text = ""
         placholderView.isHidden = false
-        pushRecipeListTableView()
     }
     
     /**Check if textView is empty and return Bool*/
@@ -51,7 +50,12 @@ class SearchViewController: UIViewController, UITextViewDelegate {
             self?.hideIndicator()
             switch result {
             case .success(let recipeList) :
-                guard let recipeList = recipeList, !recipeList.hits.isEmpty else {
+                // Take care here
+                guard let recipeList = recipeList else {
+                    return
+                }
+                //
+                guard !recipeList.hits.isEmpty else {
                     self?.displayAlert(message: Constants.Error.userEntryError)
                     self?.ingredientsListTextView.text = nil
                     return

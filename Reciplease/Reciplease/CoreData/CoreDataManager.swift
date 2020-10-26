@@ -12,19 +12,49 @@ import CoreData
 class CoreDataManager {
     // MARK: - Core Data stack
     
+    var container: NSPersistentContainer?
+    
+    init(container: NSPersistentContainer = NSPersistentContainer(name: Constants.ControllerName.reciplease)) {
+        self.container = container
+    }
+    
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: Constants.ControllerName.reciplease)
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container = NSPersistentContainer(name: Constants.ControllerName.reciplease)
+        container?.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
-        return container
+
+        guard let persistentContainer = container else {
+            return NSPersistentContainer()
+        }
+        return persistentContainer
     }()
     
     // MARK: - Core Data Saving support
     
-    func saveContext () {
+    /**Use to save a Recipe in CoreData*/
+    func saveObject(recipe: RecipeDetails, ingredientstext: String) throws  {
+        
+        let favoriteRecipe = Recipes(context: self.persistentContainer.viewContext)
+        favoriteRecipe.name = recipe.label
+        favoriteRecipe.ingredientLines = ingredientstext
+        favoriteRecipe.image = recipe.image
+        favoriteRecipe.totalTime = recipe.totalTime
+        favoriteRecipe.yield = recipe.yield
+        favoriteRecipe.imageData = recipe.imageData
+        favoriteRecipe.url = recipe.url
+        do {
+            try self.persistentContainer.viewContext.save()
+        }
+//        catch let error {
+//            
+//            throw error
+//        }
+    }
+    
+    private func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
