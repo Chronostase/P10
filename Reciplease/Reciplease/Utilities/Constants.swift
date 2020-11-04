@@ -31,6 +31,7 @@ enum Constants {
     enum Storyboard {
         static let recipeListName = "RecipeList"
         static let recipeDetailName = "RecipeDetail"
+        static let reusableRecipeListController = "ReusableRecipeListViewController"
     }
     
     enum ControllerName {

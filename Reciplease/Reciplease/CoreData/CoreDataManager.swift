@@ -48,41 +48,37 @@ class CoreDataManager {
         do {
             try self.persistentContainer.viewContext.save()
         }
-//        catch let error {
-//            
-//            throw error
-//        }
+        catch let error { throw error }
     }
     
-    private func saveContext () {
+    private func saveContext() throws {
         let context = persistentContainer.viewContext
         if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
+            do { try context.save()}
+            catch let error { throw error }
         }
     }
     
-    func read() -> [Recipes]? {
+    func read()-> [Recipes]? {
         let request: NSFetchRequest<Recipes> = Recipes.fetchRequest()
          
         do {
             let recipes = try persistentContainer.viewContext.fetch(request)
             return recipes
-        } catch {
-            return nil
-        }
+        } catch  { return nil }
     }
     
-    func remove(recipe: Recipes) {
+    func remove(recipe: Recipes) throws  {
         persistentContainer.viewContext.delete(recipe)
         guard persistentContainer.viewContext.hasChanges else {
             return 
         }
-        saveContext()
+        do {
+            try saveContext()
+            
+        } catch let error  {
+            throw error 
+        }
     }
 }
 

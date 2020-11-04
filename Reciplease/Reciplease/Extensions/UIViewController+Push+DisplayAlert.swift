@@ -17,8 +17,7 @@ extension UIViewController {
         navigationController?.pushViewController(viewController, animated: animated)
     }
     
-    //Display any alert with personalized message
-    
+    /// Display any alert with personalized message
     func displayAlert(message: String, title: String = "") {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let OKAction = UIAlertAction(title: Constants.UIElement.alertButton, style: .default, handler: nil)
@@ -26,6 +25,10 @@ extension UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
+
+    /// SetNavigation bar title
+    /// - Parameters:
+    ///   - name: set controller name
     func setNavigationBarTitle(title name: String, navItem: UINavigationItem) {
         navItem.title = name
     }

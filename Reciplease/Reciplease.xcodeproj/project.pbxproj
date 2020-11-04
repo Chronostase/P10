@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0ECAEA0AABF0B2F621E08F6C /* libPods-RecipleaseTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 422474326C98F9D6A1D54E9D /* libPods-RecipleaseTests.a */; };
+		E919BE3A2550903C008636AE /* ReusableRecipeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E919BE392550903C008636AE /* ReusableRecipeListViewController.swift */; };
+		E919BE3C25519B88008636AE /* ReusableRecipeListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E919BE3B25519B88008636AE /* ReusableRecipeListTableViewController.swift */; };
 		E93C631A2512B52E0085AAAE /* RecipeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93C63192512B52E0085AAAE /* RecipeServiceTests.swift */; };
 		E943F56A2535B70000CE225F /* CoreDataManagerFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943F5692535B70000CE225F /* CoreDataManagerFake.swift */; };
 		E943F56C2537352B00CE225F /* TestCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943F56B2537352B00CE225F /* TestCoreDataManager.swift */; };
@@ -71,6 +73,8 @@
 		4CD6985EA4F1381948777A8D /* libPods-Reciplease.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Reciplease.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DB71CE388590B3274BB40B /* Pods-Reciplease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.debug.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.debug.xcconfig"; sourceTree = "<group>"; };
 		E67FEF5616F7FA42CE83AA9B /* Pods-RecipleaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipleaseTests.debug.xcconfig"; path = "Target Support Files/Pods-RecipleaseTests/Pods-RecipleaseTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E919BE392550903C008636AE /* ReusableRecipeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableRecipeListViewController.swift; sourceTree = "<group>"; };
+		E919BE3B25519B88008636AE /* ReusableRecipeListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableRecipeListTableViewController.swift; sourceTree = "<group>"; };
 		E93C63192512B52E0085AAAE /* RecipeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeServiceTests.swift; sourceTree = "<group>"; };
 		E943F5692535B70000CE225F /* CoreDataManagerFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerFake.swift; sourceTree = "<group>"; };
 		E943F56B2537352B00CE225F /* TestCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataManager.swift; sourceTree = "<group>"; };
@@ -330,6 +334,8 @@
 				E9CB4840250689530026BC55 /* RecipeList */,
 				E9CA1FFD24C89450009C6C51 /* Details */,
 				E98C45AC24BF096B0068520C /* Favorite */,
+				E919BE392550903C008636AE /* ReusableRecipeListViewController.swift */,
+				E919BE3B25519B88008636AE /* ReusableRecipeListTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -542,12 +548,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9E8FCAA24F6D3E300B09854 /* PlaceholderView.swift in Sources */,
+				E919BE3A2550903C008636AE /* ReusableRecipeListViewController.swift in Sources */,
 				E9BF939C24CF2104008B680D /* FavoriteTableViewController.swift in Sources */,
 				E9BF939E24CF334E008B680D /* CoreDataManager.swift in Sources */,
 				E9E8FC9E24E2FF0200B09854 /* BorderedUiView.swift in Sources */,
 				E9E8FCA024E4354A00B09854 /* IntExtension.swift in Sources */,
 				E9CA1FEF24C1AB7F009C6C51 /* ServiceError.swift in Sources */,
 				E9E8FC9A24E2F09200B09854 /* RoundedButton.swift in Sources */,
+				E919BE3C25519B88008636AE /* ReusableRecipeListTableViewController.swift in Sources */,
 				E98C45BB24BF5D970068520C /* SearchViewController+UITextField.swift in Sources */,
 				E96205C125092EA8008AEC68 /* RecipeSession.swift in Sources */,
 				E9E8FCA224E43C9000B09854 /* DoubleExtension.swift in Sources */,

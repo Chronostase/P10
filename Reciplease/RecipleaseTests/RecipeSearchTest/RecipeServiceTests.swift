@@ -70,7 +70,7 @@ class RecipeServiceTest: XCTestCase {
                 XCTAssertNotNil(recipeList)
                 
             case .failure(let error):
-                XCTAssertNotNil(error)
+                XCTAssertNil(error)
             }
         }
     }

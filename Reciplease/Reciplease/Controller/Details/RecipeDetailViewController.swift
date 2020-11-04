@@ -16,6 +16,10 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var ingredientsTextView: UITextView!
     @IBOutlet weak var recipeName: UILabel!
+    @IBOutlet var notationLabel: UILabel!
+    @IBOutlet var notationImageView: UIImageView!
+    @IBOutlet var durationLabel: UILabel!
+    @IBOutlet var durationImageView: UIImageView!
     
     let coreDataManager = CoreDataManager()
     var recipe: RecipeDetails? {
@@ -45,6 +49,10 @@ class RecipeDetailViewController: UIViewController {
         guard let recipe = recipe, let data = recipe.imageData else {
             return
         }
+        notationLabel.text = "\(Int(recipe.yield).formatUsingAbbrevation())"
+        notationImageView.image = UIImage(named: Constants.UIElement.likeImage)
+        durationLabel.text = "\(recipe.totalTime.convertMinutesInHours)"
+        durationImageView.image = UIImage(named: Constants.UIElement.watchImage)
         recipeName.text = recipe.label
         recipeImage.image = UIImage(data: data)
         var recipeIngredients = ""
@@ -98,7 +106,7 @@ class RecipeDetailViewController: UIViewController {
         if favoriteRecipes.count > 0 {
             for recipe in favoriteRecipes {
                 if recipe.name == recipeName.text {
-                    coreDataManager.remove(recipe: recipe)
+                    try? coreDataManager.remove(recipe: recipe)
                 }
             }
         }

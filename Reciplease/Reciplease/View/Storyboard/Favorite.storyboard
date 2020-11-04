@@ -11,16 +11,16 @@
         <!--Favorite-->
         <scene sceneID="gm7-bz-Ucp">
             <objects>
-                <viewController title="Favorite" id="QOX-sC-kRo" customClass="FavoriteViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Favorite" id="QOX-sC-kRo" customClass="ReusableRecipeListViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aMB-Ae-wOI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vWV-aI-KE3">
+                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vWV-aI-KE3">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" red="0.20784313725490194" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ty1-9a-il1" customClass="PlaceholderView" customModule="Reciplease" customModuleProvider="target">
+                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ty1-9a-il1" customClass="PlaceholderView" customModule="Reciplease" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
@@ -38,7 +38,7 @@
                                     <navigationItem title="Favorites" id="2Cu-1i-UX0">
                                         <barButtonItem key="rightBarButtonItem" title="Edit" id="Cna-a5-aeT">
                                             <connections>
-                                                <action selector="editButton:" destination="QOX-sC-kRo" id="BCA-Ma-e5T"/>
+                                                <action selector="editButton:" destination="QOX-sC-kRo" id="Juk-Rs-ETs"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -64,8 +64,8 @@
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="Fkp-8f-GJv"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="placeholderView" destination="ty1-9a-il1" id="8kN-2T-jhK"/>
-                        <outlet property="tableView" destination="vWV-aI-KE3" id="W2n-hb-gvg"/>
+                        <outletCollection property="tableView" destination="vWV-aI-KE3" collectionClass="NSMutableArray" id="J6a-35-Ke8"/>
+                        <outletCollection property="placeHolder" destination="ty1-9a-il1" collectionClass="NSMutableArray" id="JiU-jc-R5Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HQw-Dn-0p3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

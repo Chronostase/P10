@@ -11,7 +11,7 @@ class SearchViewController: UIViewController, UITextViewDelegate {
     
     //MARK: - Properties
     
-    @IBOutlet var placholderView: PlaceholderView!
+    @IBOutlet var placeHolderView: PlaceholderView!
     @IBOutlet weak var ingredientsTextField: UITextField!
     @IBOutlet weak var ingredientsListTextView: UITextView!
     var recipeList: RecipeList?
@@ -26,15 +26,15 @@ class SearchViewController: UIViewController, UITextViewDelegate {
     @IBAction func searchButton(_ sender: UIButton) {
         ingredientsTextField.resignFirstResponder()
         if ingredientsTextViewIsEmpty() {
-            placholderView.isHidden = false
+            placeHolderView.isHidden = false
         } else {
-            placholderView.isHidden = true
+            placeHolderView.isHidden = true
             getRecipes()
         }
     }
     @IBAction func clearButton(_ sender: UIButton) {
         ingredientsListTextView.text = ""
-        placholderView.isHidden = false
+        placeHolderView.isHidden = false
     }
     
     /**Check if textView is empty and return Bool*/
@@ -97,16 +97,16 @@ class SearchViewController: UIViewController, UITextViewDelegate {
     @objc func tapAddButton() {
         if textFieldIsEmpty() {
             if ingredientsListTextView.text == nil {
-                placholderView.isHidden = false
+                placeHolderView.isHidden = false
             } else {
-                placholderView.isHidden = false
+                placeHolderView.isHidden = false
                 ingredientsListTextView.isHidden = true
             }
         } else {
             setTextFieldValueToTextView()
             ingredientsTextField.text = nil
             ingredientsListTextView.isHidden = false
-            placholderView.isHidden = true
+            placeHolderView.isHidden = true
         }
     }
     
@@ -126,12 +126,14 @@ class SearchViewController: UIViewController, UITextViewDelegate {
     /** push RecipeListViewController */
     private func pushRecipeListTableView() {
         let storyBoard = UIStoryboard(name: Constants.Storyboard.recipeListName, bundle: nil)
-        guard let recipeListViewController = storyBoard.instantiateInitialViewController() as? RecipeListViewController else {
+        guard let reusableRecipeListViewController = storyBoard.instantiateInitialViewController() as? ReusableRecipeListViewController else {
             return
         }
-        recipeListViewController.recipeList = recipeList
-        recipeListViewController.navigationController?.navigationBar.topItem?.title = Constants.ControllerName.reciplease
-        push(recipeListViewController)
+        reusableRecipeListViewController.recipelist = recipeList
+        reusableRecipeListViewController.dataSourceType = .api
+        
+        reusableRecipeListViewController.navigationController?.navigationBar.topItem?.title = Constants.ControllerName.reciplease
+        push(reusableRecipeListViewController)
     }
     
 }

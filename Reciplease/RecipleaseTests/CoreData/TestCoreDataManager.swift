@@ -45,7 +45,7 @@ class TestCoreDataManager: XCTestCase {
         print(result.count)
         XCTAssertEqual(result.count, 10)
         for recipe in result {
-            container.remove(recipe: recipe)
+            try? container.remove(recipe: recipe)
         }
     }
     
@@ -107,7 +107,7 @@ class TestCoreDataManager: XCTestCase {
         print(result.count)
         XCTAssertEqual(result.count, 10)
         for recipe in result {
-            container.remove(recipe: recipe)
+            try? container.remove(recipe: recipe)
         }
         XCTAssertEqual(container.read()?.count, 0)
     }
@@ -116,7 +116,7 @@ class TestCoreDataManager: XCTestCase {
         XCTAssertEqual(container.read()?.count, 0)
         let recipe = Recipes()
         
-        container.remove(recipe: recipe)
+        try? container.remove(recipe: recipe)
         
         XCTAssertEqual(container.read()?.count, 0)
     }
