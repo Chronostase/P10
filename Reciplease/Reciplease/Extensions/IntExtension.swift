@@ -10,6 +10,7 @@ import Foundation
 
 extension Int {
 
+    /** Format Int to better Read of large number */
     func formatUsingAbbrevation () -> String {
         let numFormatter = NumberFormatter()
 

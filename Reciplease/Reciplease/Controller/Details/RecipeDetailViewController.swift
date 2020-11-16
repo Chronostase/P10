@@ -12,6 +12,8 @@ import SafariServices
 
 class RecipeDetailViewController: UIViewController {
     
+    //MARK: - Properties
+    
     @IBOutlet var starButton: UIBarButtonItem!
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var ingredientsTextView: UITextView!
@@ -29,6 +31,9 @@ class RecipeDetailViewController: UIViewController {
             }
         }
     }
+    
+    //MARK: - Methods
+    
     @IBAction func starBoutton(_ sender: UIBarButtonItem) {
         addOrRemoveFavorite(button: sender)
     }
@@ -85,17 +90,12 @@ class RecipeDetailViewController: UIViewController {
             } catch let error {
                 print(error.localizedDescription)
                 displayAlert(message: Constants.CoreDataError.saveError)
-                
-//                switch error {
-//                }
             }
-//            if coreDataManager.didSaveObject(recipe: recipe, ingredientstext: ingredientsTextView.text) == false {
-//                displayAlert(message: Constants.CoreDataError.saveError)
-//            }
         } else {
             removeRecipe()
         }
     }
+    
     /**
      Fetch recipe save in coreData, check if currentRecipe.Name == dataFetch.name if it's True remove current recipe from CoreData
      */
@@ -128,7 +128,6 @@ class RecipeDetailViewController: UIViewController {
         }
         if favoriteRecipes.count > 0 {
             for recipe in favoriteRecipes {
-                // Try to compare complete recipe
                 if recipe.name == recipeName.text {
                     indicator = true
                 }
@@ -151,25 +150,4 @@ class RecipeDetailViewController: UIViewController {
         let safariViewController = SFSafariViewController(url: url)
         present(safariViewController, animated: true)
     }
-    
-    /**Use to save a Recipe in CoreData*/
-//    private func saveObject() {
-//        guard let recipe = self.recipe else {
-//            return
-//        }
-//
-//        let favoriteRecipe = Recipes(context: coreDataManager.persistentContainer.viewContext)
-//        favoriteRecipe.name = recipe.label
-//        favoriteRecipe.ingredientLines = self.ingredientsTextView.text
-//        favoriteRecipe.image = recipe.image
-//        favoriteRecipe.totalTime = recipe.totalTime
-//        favoriteRecipe.yield = recipe.yield
-//        favoriteRecipe.imageData = recipe.imageData
-//        favoriteRecipe.url = recipe.url
-//        do {
-//            try coreDataManager.persistentContainer.viewContext.save()
-//        } catch {
-//            displayAlert(message: Constants.CoreDataError.saveError )
-//        }
-//    }
 }

@@ -10,6 +10,7 @@ import Foundation
 
 extension Double {
     
+    /** Allow to convert minute in hours */
     var convertMinutesInHours: String {
         let minutes = self
         var value = ""

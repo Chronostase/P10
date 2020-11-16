@@ -16,6 +16,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGN-fc-f4q">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <color key="barTintColor" red="0.36470588235294116" green="0.36078431372549019" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="31"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem id="2Cu-1i-UX0">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="S5g-DI-7r5">
+                                            <connections>
+                                                <action selector="backButton:" destination="QOX-sC-kRo" id="8xG-ON-fsv"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Cna-a5-aeT">
+                                            <connections>
+                                                <action selector="editButton:" destination="QOX-sC-kRo" id="Juk-Rs-ETs"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vWV-aI-KE3">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" red="0.20784313725490194" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -27,23 +49,6 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="title" value="Ho you don't have any favorites"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGN-fc-f4q">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <color key="barTintColor" red="0.36470588235294116" green="0.36078431372549019" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="31"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Favorites" id="2Cu-1i-UX0">
-                                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Cna-a5-aeT">
-                                            <connections>
-                                                <action selector="editButton:" destination="QOX-sC-kRo" id="Juk-Rs-ETs"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="0.36470588235294116" green="0.36078431372549019" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -64,8 +69,11 @@
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="Fkp-8f-GJv"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outletCollection property="tableView" destination="vWV-aI-KE3" collectionClass="NSMutableArray" id="J6a-35-Ke8"/>
-                        <outletCollection property="placeHolder" destination="ty1-9a-il1" collectionClass="NSMutableArray" id="JiU-jc-R5Y"/>
+                        <outlet property="backButton" destination="S5g-DI-7r5" id="r7L-dY-Nm3"/>
+                        <outlet property="editButton" destination="Cna-a5-aeT" id="7J7-Vq-9Bb"/>
+                        <outlet property="navigationStuff" destination="2Cu-1i-UX0" id="WSE-HG-x6h"/>
+                        <outlet property="placeHolder" destination="ty1-9a-il1" id="lK3-2t-PQd"/>
+                        <outlet property="tableView" destination="vWV-aI-KE3" id="rhX-Yj-MIY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HQw-Dn-0p3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -37,6 +37,62 @@ class SearchViewController: UIViewController, UITextViewDelegate {
         placeHolderView.isHidden = false
     }
     
+    /** Set textField and textView Delegate and add button to keyboard toolbar*/
+    private func setup() {
+        setTextFielAndTextViewdDelegate()
+        setupAddButton()
+    }
+    
+      /** Set textField and TextViewDelegate to SearchViewController */
+      private func setTextFielAndTextViewdDelegate() {
+          ingredientsTextField.delegate = self
+          ingredientsListTextView.delegate = self
+      }
+    
+    /** add an add button to toolbar */
+    private func setupAddButton() {
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
+        toolBar.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: Constants.UIElement.addButton, style: .done, target: self, action: #selector(tapAddButton))
+        toolBar.setItems([flexibleSpace, doneButton], animated: false)
+        ingredientsTextField.inputAccessoryView = toolBar
+    }
+    
+    /** Allow to show placeHolder if TextView is empty when user push add Button, and add ingredient in textView if user type something in textField */
+       @objc func tapAddButton() {
+           if textFieldIsEmpty() {
+               if ingredientsListTextView.text == nil {
+                   placeHolderView.isHidden = false
+               } else {
+                   placeHolderView.isHidden = false
+                   ingredientsListTextView.isHidden = true
+               }
+           } else {
+               setTextFieldValueToTextView()
+               ingredientsTextField.text = nil
+               ingredientsListTextView.isHidden = false
+               placeHolderView.isHidden = true
+           }
+       }
+    
+    /** Check if textField is empty*/
+    private func textFieldIsEmpty() -> Bool {
+        guard let isEmpty = ingredientsTextField.text?.isEmpty else {
+            return true
+        }
+        return isEmpty
+    }
+    
+    /** Set user entry to textView */
+    private func setTextFieldValueToTextView() {
+        guard let text = ingredientsTextField.text else {
+            return
+        }
+        let formatedText = "\n \n - \(text)"
+        ingredientsListTextView.text += formatedText
+    }
+    
     /**Check if textView is empty and return Bool*/
     private func ingredientsTextViewIsEmpty() -> Bool {
         return self.ingredientsListTextView.text.isEmpty
@@ -68,71 +124,16 @@ class SearchViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-    
-    /** Set textField and textView Delegate and add button to keyboard toolbar*/
-    private func setup() {
-        setTextFielAndTextViewdDelegate()
-        setupAddButton()
-    }
-    
-    /** Set user entry to textView */
-    private func setTextFieldValueToTextView() {
-        guard let text = ingredientsTextField.text else {
-            return
-        }
-        let formatedText = "\n \n - \(text)"
-        ingredientsListTextView.text += formatedText
-    }
-    
-    /** add an add button to toolbar */
-    private func setupAddButton() {
-        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
-        toolBar.sizeToFit()
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: Constants.UIElement.addButton, style: .done, target: self, action: #selector(tapAddButton))
-        toolBar.setItems([flexibleSpace, doneButton], animated: false)
-        ingredientsTextField.inputAccessoryView = toolBar
-    }
-    
-    @objc func tapAddButton() {
-        if textFieldIsEmpty() {
-            if ingredientsListTextView.text == nil {
-                placeHolderView.isHidden = false
-            } else {
-                placeHolderView.isHidden = false
-                ingredientsListTextView.isHidden = true
-            }
-        } else {
-            setTextFieldValueToTextView()
-            ingredientsTextField.text = nil
-            ingredientsListTextView.isHidden = false
-            placeHolderView.isHidden = true
-        }
-    }
-    
-    private func textFieldIsEmpty() -> Bool {
-        guard let isEmpty = ingredientsTextField.text?.isEmpty else {
-            return true
-        }
-        return isEmpty
-    }
-    
-    /** Set textField and TextViewDelegate to SearchViewController */
-    private func setTextFielAndTextViewdDelegate() {
-        ingredientsTextField.delegate = self
-        ingredientsListTextView.delegate = self
-    }
-    
+
     /** push RecipeListViewController */
     private func pushRecipeListTableView() {
-        let storyBoard = UIStoryboard(name: Constants.Storyboard.recipeListName, bundle: nil)
+        let storyBoard = UIStoryboard(name: Constants.Storyboard.favorite, bundle: nil)
         guard let reusableRecipeListViewController = storyBoard.instantiateInitialViewController() as? ReusableRecipeListViewController else {
             return
         }
         reusableRecipeListViewController.recipelist = recipeList
         reusableRecipeListViewController.dataSourceType = .api
         
-        reusableRecipeListViewController.navigationController?.navigationBar.topItem?.title = Constants.ControllerName.reciplease
         push(reusableRecipeListViewController)
     }
     

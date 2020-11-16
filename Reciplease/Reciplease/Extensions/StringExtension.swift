@@ -33,8 +33,7 @@ extension String {
         return Double(self) != nil
     }
     
-    //Check if a string is convertible to Int or Double
-    
+    /** Check if a string is convertible to Int ou Double*/
     func isConvertiBleToIntOrDouble() -> Bool {
         if self.isDouble || self.isInt {
             return true
