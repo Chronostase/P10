@@ -32,6 +32,8 @@ class SearchViewController: UIViewController, UITextViewDelegate {
             getRecipes()
         }
     }
+    
+    /** Remove all ingredients from textView */
     @IBAction func clearButton(_ sender: UIButton) {
         ingredientsListTextView.text = ""
         placeHolderView.isHidden = false
@@ -106,18 +108,19 @@ class SearchViewController: UIViewController, UITextViewDelegate {
             self?.hideIndicator()
             switch result {
             case .success(let recipeList) :
-                // Take care here
+                
                 guard let recipeList = recipeList else {
                     return
                 }
-                //
+                
                 guard !recipeList.hits.isEmpty else {
                     self?.displayAlert(message: Constants.Error.userEntryError)
                     self?.ingredientsListTextView.text = nil
+                    self?.placeHolderView.isHidden = false
                     return
                 }
                 self?.recipeList = recipeList
-                self?.pushRecipeListTableView()
+                self?.pushReusableRecipeList()
                 
             case .failure(let error):
                 print(error.localizedDescription)
@@ -126,7 +129,7 @@ class SearchViewController: UIViewController, UITextViewDelegate {
     }
 
     /** push RecipeListViewController */
-    private func pushRecipeListTableView() {
+    private func pushReusableRecipeList() {
         let storyBoard = UIStoryboard(name: Constants.Storyboard.favorite, bundle: nil)
         guard let reusableRecipeListViewController = storyBoard.instantiateInitialViewController() as? ReusableRecipeListViewController else {
             return

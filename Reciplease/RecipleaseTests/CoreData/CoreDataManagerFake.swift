@@ -28,10 +28,9 @@ class CoreDataManagerFake: CoreDataManager {
         
         container.persistentStoreDescriptions = [description]
         container.loadPersistentStores { (description, error) in
-            // Check if the data store is in memory
+            
             precondition( description.type == NSInMemoryStoreType )
                                         
-            // Check if creating container wrong
             if let error = error {
                 fatalError("Create an in-mem coordinator failed \(error)")
             }

@@ -46,7 +46,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Ho you don't have any favorites"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Ho you don't have any favorites, go in search section to add recipe in your favorite"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>

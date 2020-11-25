@@ -1,15 +1,15 @@
-////
-////  Constants.swift
-////  GreaTrip
-////
-////  Created by Thomas on 09/06/2020.
-////  Copyright © 2020 Thomas. All rights reserved.
-////
+//
+//  Constants.swift
+//  GreaTrip
+//
+//  Created by Thomas on 09/06/2020.
+//  Copyright © 2020 Thomas. All rights reserved.
+//
 //
 //import Foundation
-//
+
 enum Constants {
-//
+    
     enum Error {
         static let dataError = "Empty or corrupted Data"
         static let simpleError = "An error append"

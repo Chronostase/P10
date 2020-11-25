@@ -15,6 +15,7 @@ class RecipeServiceTest: XCTestCase {
         return RecipeService(session: RecipeSessionFake(fakeResponse: fakeResponseData))
     }
     
+    
     func testGetRecipeShouldGetFailedCallbackIfErrorAndIncorrectData() {
         // Given
         fakeResponseData = FakeResponse(response: FakeResponseData().responseOk, error: FakeResponseData.mokeError, data: FakeResponseData.recipeIncorrectData)
@@ -30,7 +31,6 @@ class RecipeServiceTest: XCTestCase {
             }
         }
     }
-//    
     func testGetRecipeShouldCallBackErrorIfBadResponseAndIncorrectData() {
         // Given
         fakeResponseData = FakeResponse(response: FakeResponseData().responseKo, error: FakeResponseData.mokeError, data: FakeResponseData.recipeIncorrectData)

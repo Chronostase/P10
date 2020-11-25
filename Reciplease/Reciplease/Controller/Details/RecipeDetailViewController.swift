@@ -80,7 +80,6 @@ class RecipeDetailViewController: UIViewController {
     private func addOrRemoveFavorite(button: UIBarButtonItem) {
         if button.tintColor == UIColor.white {
             button.tintColor = .systemYellow
-//            saveObject()
             guard let recipe = self.recipe else {
                 return
             }

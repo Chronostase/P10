@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kgp-iu-LFc">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
                                 <color key="backgroundColor" red="0.36470588235294116" green="0.36078431372549019" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7r2-ne-Vwi">
@@ -176,7 +176,7 @@
                             <constraint firstItem="Kgp-iu-LFc" firstAttribute="leading" secondItem="7pK-nI-EDg" secondAttribute="leading" id="0Lo-Lf-W8j"/>
                             <constraint firstItem="7pK-nI-EDg" firstAttribute="trailing" secondItem="7r2-ne-Vwi" secondAttribute="trailing" id="5jJ-vB-Ghm"/>
                             <constraint firstItem="jSf-QF-wpp" firstAttribute="leading" secondItem="7pK-nI-EDg" secondAttribute="leading" constant="30" id="8FV-hr-pt7"/>
-                            <constraint firstItem="7r2-ne-Vwi" firstAttribute="top" secondItem="Kgp-iu-LFc" secondAttribute="bottom" id="C9o-8d-HOV"/>
+                            <constraint firstItem="7r2-ne-Vwi" firstAttribute="top" secondItem="Kgp-iu-LFc" secondAttribute="bottom" constant="-60" id="C9o-8d-HOV"/>
                             <constraint firstItem="7r2-ne-Vwi" firstAttribute="height" secondItem="1HI-0q-9tL" secondAttribute="height" multiplier="0.4" id="CA4-hl-YRa"/>
                             <constraint firstItem="jSf-QF-wpp" firstAttribute="height" secondItem="1HI-0q-9tL" secondAttribute="height" multiplier="0.08" id="GAV-tp-heq"/>
                             <constraint firstItem="jSf-QF-wpp" firstAttribute="top" secondItem="u0p-33-ptI" secondAttribute="bottom" constant="20" id="JSR-JB-zy1"/>

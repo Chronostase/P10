@@ -40,9 +40,6 @@ class ReusableRecipeListViewController: UIViewController, UINavigationController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = ""
-        self.navigationItem.title = ""
-        self.navigationController?.title = ""
         setup()
     }
     
@@ -63,7 +60,7 @@ class ReusableRecipeListViewController: UIViewController, UINavigationController
             if tableView.isEditing {
                 sender.title = Constants.UIElement.editButton
                 tableView.setEditing(false, animated: true)
-            }else {
+            } else {
                 sender.title = Constants.UIElement.doneButton
                 tableView.setEditing(true, animated: true)
             }
@@ -158,13 +155,14 @@ class ReusableRecipeListViewController: UIViewController, UINavigationController
     /**Push RecipeDetailViewController*/
     func pushRecipeDetail(withRecipe recipe: RecipeDetails, indexPath: IndexPath? = nil) {
         
+        let storyBoard = UIStoryboard(name: Constants.Storyboard.recipeDetailName, bundle: nil)
+        guard let recipeDetailController = storyBoard.instantiateInitialViewController() as? RecipeDetailViewController else {
+            return
+        }
+        
         switch dataSourceType {
         case .api:
             
-            let storyBoard = UIStoryboard(name: Constants.Storyboard.recipeDetailName, bundle: nil)
-            guard let recipeDetailController = storyBoard.instantiateInitialViewController() as? RecipeDetailViewController else {
-                return
-            }
             recipeDetailController.recipe = recipe
             
             guard let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) as? CustomTableViewCell, let image = cell.recipeImage.image else {
@@ -173,12 +171,9 @@ class ReusableRecipeListViewController: UIViewController, UINavigationController
             
             recipeDetailController.recipe?.imageData = image.pngData()
             push(recipeDetailController)
+            
         case .coreData:
             
-            let storyBoard = UIStoryboard(name: Constants.Storyboard.recipeDetailName, bundle: nil)
-            guard let recipeDetailController = storyBoard.instantiateInitialViewController() as? RecipeDetailViewController else {
-                return
-            }
             recipeDetailController.recipe = recipe
             push(recipeDetailController)
             

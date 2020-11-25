@@ -70,7 +70,7 @@ class CoreDataManager {
             return 
         }
         do {
-            try saveContext()
+            try persistentContainer.viewContext.save()
             
         } catch let error  { throw error }
     }

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 extension ReusableRecipeListViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch dataSourceType {
@@ -77,7 +78,6 @@ extension ReusableRecipeListViewController: UITableViewDataSource {
         }
     }
     
-    // Find a way to only use this method in FavoritePage
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard dataSourceType == .coreData else {
             return nil
