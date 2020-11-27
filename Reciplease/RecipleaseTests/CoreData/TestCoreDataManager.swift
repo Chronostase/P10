@@ -16,7 +16,7 @@ class TestCoreDataManager: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        container = CoreDataManager(container: CoreDataManagerFake().mockPersistantContainer)
+        container = CoreDataManager(container: CoreDataManagerFake().mockPersistentContainer)
     }
     
     override func tearDown() {

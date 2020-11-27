@@ -59,8 +59,8 @@
                             <constraint firstItem="hGN-fc-f4q" firstAttribute="leading" secondItem="FAI-og-rjO" secondAttribute="leading" id="Nkm-pI-q27"/>
                             <constraint firstItem="FAI-og-rjO" firstAttribute="trailing" secondItem="vWV-aI-KE3" secondAttribute="trailing" id="UKb-oj-59V"/>
                             <constraint firstItem="vWV-aI-KE3" firstAttribute="bottom" secondItem="ty1-9a-il1" secondAttribute="bottom" id="Xro-nh-akM"/>
-                            <constraint firstItem="vWV-aI-KE3" firstAttribute="trailing" secondItem="ty1-9a-il1" secondAttribute="trailing" id="ajN-ft-Puw"/>
-                            <constraint firstItem="ty1-9a-il1" firstAttribute="leading" secondItem="vWV-aI-KE3" secondAttribute="leading" id="dvN-j0-ibb"/>
+                            <constraint firstItem="FAI-og-rjO" firstAttribute="trailing" secondItem="ty1-9a-il1" secondAttribute="trailing" id="ajN-ft-Puw"/>
+                            <constraint firstItem="ty1-9a-il1" firstAttribute="leading" secondItem="FAI-og-rjO" secondAttribute="leading" id="dvN-j0-ibb"/>
                             <constraint firstItem="vWV-aI-KE3" firstAttribute="top" secondItem="hGN-fc-f4q" secondAttribute="bottom" id="ifq-VE-bjd"/>
                             <constraint firstItem="vWV-aI-KE3" firstAttribute="leading" secondItem="FAI-og-rjO" secondAttribute="leading" id="wcA-8R-R6p"/>
                         </constraints>

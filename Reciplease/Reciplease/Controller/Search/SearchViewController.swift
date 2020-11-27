@@ -15,7 +15,6 @@ class SearchViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var ingredientsTextField: UITextField!
     @IBOutlet weak var ingredientsListTextView: UITextView!
     var recipeList: RecipeList?
-    
     //MARK: - Methods
     
     override func viewDidLoad() {
@@ -123,6 +122,7 @@ class SearchViewController: UIViewController, UITextViewDelegate {
                 self?.pushReusableRecipeList()
                 
             case .failure(let error):
+                self?.displayAlert(message: "Something wrong append please check your connection")
                 print(error.localizedDescription)
             }
         }

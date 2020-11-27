@@ -47,14 +47,6 @@ class CoreDataManager {
         catch let error { throw error }
     }
     
-    private func saveContext() throws {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do { try context.save()}
-            catch let error { throw error }
-        }
-    }
-    
     func read()-> [Recipes]? {
         let request: NSFetchRequest<Recipes> = Recipes.fetchRequest()
          

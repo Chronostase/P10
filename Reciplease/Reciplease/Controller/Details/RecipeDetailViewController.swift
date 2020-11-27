@@ -145,7 +145,6 @@ class RecipeDetailViewController: UIViewController {
         guard let recipeUrl = recipe?.url, let url = URL(string: recipeUrl) else {
             return
         }
-        print(recipeUrl)
         let safariViewController = SFSafariViewController(url: url)
         present(safariViewController, animated: true)
     }

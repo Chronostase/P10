@@ -21,6 +21,7 @@ extension UILoader where Self: UIViewController {
             self.view.isUserInteractionEnabled = false
             loader.startAnimating()
             self.view.addSubview(loader)
+            
         }
     }
     

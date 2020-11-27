@@ -53,11 +53,15 @@ class PlaceholderView: UIView {
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         stackView.widthAnchor.constraint(equalToConstant: 400).isActive = true
-        stackView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        stackView.heightAnchor.constraint(equalToConstant: 220).isActive = true
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        label.textAlignment = .center
     }
 
 }

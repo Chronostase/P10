@@ -19,12 +19,12 @@ class CoreDataManagerFake: CoreDataManager {
         return managedObjectModel
     }()
     
-    lazy var mockPersistantContainer: NSPersistentContainer = {
+    lazy var mockPersistentContainer: NSPersistentContainer = {
         
         let container = NSPersistentContainer(name: Constants.ControllerName.reciplease, managedObjectModel: self.managedObjectModel)
         let description = NSPersistentStoreDescription()
         description.type = NSInMemoryStoreType
-        description.shouldAddStoreAsynchronously = false // Make it simpler in test env
+        description.shouldAddStoreAsynchronously = false 
         
         container.persistentStoreDescriptions = [description]
         container.loadPersistentStores { (description, error) in
